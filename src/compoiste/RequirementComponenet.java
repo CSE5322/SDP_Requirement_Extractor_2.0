@@ -2,7 +2,7 @@ package compoiste;
 
 import BusinessObjects.Phrase;
 
-public class RequirementComponenet {
+public abstract class RequirementComponenet {
 
 	private Phrase phrase;
 	
