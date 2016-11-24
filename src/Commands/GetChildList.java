@@ -10,10 +10,10 @@ import BusinessObjects.Repository;
 import BusinessObjects.RequirementComponent;
 import BusinessObjects.Step;
 
-public class GetChild extends ListCommand{
+public class GetChildList extends ListCommand{
 	RequirementComponent parent;
 	
-	public GetChild(RequirementComponent parent) {
+	public GetChildList(RequirementComponent parent) {
 		this.parent=parent;
 	}
 	
