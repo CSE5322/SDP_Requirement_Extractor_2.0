@@ -26,7 +26,7 @@ public class GetComponent extends ListCommand{
 	@Override
 	public Object execute() {
 		
-		RequirementComponent child = null;
+		RequirementComponent child = root;
 		
 		if(bpNum != -1){
 			child = root.getChildAt(bpNum);
