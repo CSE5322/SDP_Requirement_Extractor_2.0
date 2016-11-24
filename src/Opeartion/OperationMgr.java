@@ -8,10 +8,10 @@ import BusinessObjects.RequirementComponent;
 
 public class OperationMgr {
 
-	private OperationMgr instance;
+	private static OperationMgr instance;
 	private OpeartionInterface operation;
 	
-	public OperationMgr getInstance(){
+	public static OperationMgr getInstance(){
 		if(instance == null)
 			instance = new OperationMgr();
 		
