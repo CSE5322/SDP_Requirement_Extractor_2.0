@@ -1,6 +1,8 @@
 package compoiste;
 
 public class Phrase {
+	
+	//
 	private String verb;
 	private String noun;
 	private String sentence;
