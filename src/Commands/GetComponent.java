@@ -2,35 +2,48 @@ package Commands;
 
 import java.util.List;
 
-import BusinessObjects.Action;
-import BusinessObjects.BusinessProcess;
-import BusinessObjects.Repository;
+import compoiste.CompositeComponent;
+
 import BusinessObjects.RequirementComponent;
-import BusinessObjects.Step;
 
 public class GetComponent extends ListCommand{
-	Object parent;
+
+	private List<RequirementComponent> root;
+	private int bpNum,stepNum,actionNum;
 	
-	public GetComponent(Object parent) {
-		this.parent=parent;
+	public GetComponent(List<RequirementComponent> root, String id){
+		String[] num = id.split(".");
+    	
+    	bpNum = Integer.parseInt(num[0]);
+    	stepNum = Integer.parseInt(num[1]);
+    	actionNum = Integer.parseInt(num[2]);
+    	
 	}
 	
-	
-	public boolean execute()
-	{
-		if(parent instanceof Repository){
-			super.setResult(((Repository) parent).getBusinessProcessList());
-			return true;
-		}
-		else if(parent instanceof BusinessProcess){
-			super.setResult(((BusinessProcess)parent).getStepsList());
-			return true;
-		}
-		else if(parent instanceof Step){
-			super.setResult(((Step)parent).getActionsList());
-			return true;
-		}
+	@Override
+	public Object execute() {
+		
+		RequirementComponent child = null;
+		
+		if(bpNum != -1){
+			child = root.get(bpNum);
 			
-		return false;
+			if(stepNum != -1){
+				child = ((CompositeComponent)child).getChildAt(stepNum);
+				
+				if(actionNum != -1){
+					child = ((CompositeComponent)child).getChildAt(actionNum);
+				}
+			}
+		
+		}
+		
+		return child;
 	}
+
+	@Override
+	public Object undoExecute() {
+		return null;
+	}
+
 }

@@ -8,7 +8,7 @@ import BusinessObjects.Phrase;
 import BusinessObjects.Repository;
 import BusinessObjects.Step;
 import Commands.AddComponent;
-import Commands.GetComponent;
+import Commands.GetChild;
 
 public class DefineBusinessProcessController {
 	

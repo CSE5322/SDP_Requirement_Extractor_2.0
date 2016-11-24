@@ -8,6 +8,7 @@ import BusinessObjects.RequirementComponent;
 
 public class CompositeComponent extends RequirementComponent{
 
+	private String type;
 	private List<RequirementComponent> childList;
 	private int priority;
 	
@@ -16,6 +17,14 @@ public class CompositeComponent extends RequirementComponent{
 		childList = new ArrayList<>();
 	}
 
+	public void setType(String type){
+		this.type = type;
+	}
+	
+	public String getType(){
+		return type;
+	}
+	
 	public void setPriority(int priority){
 		this.priority = priority;
 	}
@@ -37,6 +46,10 @@ public class CompositeComponent extends RequirementComponent{
 	}
 	
 	public RequirementComponent getChildAt(int index){
-		return childList.get(index);
+		
+		if(index < childList.size())
+			return childList.get(index);
+		else
+			return null;
 	}
 }

@@ -1,4 +1,5 @@
 package Commands;
+
 import org.omg.CORBA.RepositoryIdHelper;
 
 import BusinessObjects.Action;
@@ -10,41 +11,53 @@ import BusinessObjects.Step;
 public class EditComponent extends ListCommand {
 	RequirementComponent oldCom;
 	RequirementComponent newCom;
-    int position;
 	
-	public EditComponent(RequirementComponent oldCom,RequirementComponent newCom,int position) {
-				this.newCom = newCom;
-                this.oldCom = oldCom;
-                this.position=position;
-                
+	RequirementComponent oldParent;
+	RequirementComponent newParent;
+	
+	int oldIndex;
+	int newIndex;
+
+	public EditComponent(
+			RequirementComponent oldCom,
+			RequirementComponent newCom,
+			RequirementComponent oldParent,
+			RequirementComponent newParent,
+			int oldIndex,int newIndex) {
+		this.newCom = newCom;
+		this.oldCom = oldCom;
+		this.oldParent = oldParent;
+		this.newParent = newParent;
+		this.oldIndex = oldIndex;
+		this.newIndex = newIndex;
+	}
+
+	@Override
+	public Object execute() {
+
+		RemoveComponent remove = new RemoveComponent(oldParent,oldCom);
+		remove.execute();
+
+		AddComponent add = null;
+
+		add = new AddComponent(newParent, newCom,
+				newIndex);
+
+		return add.execute();
 	}
 	
-	public boolean execute()
-	{
-		
-		
-		RemoveComponent remove = new RemoveComponent(oldCom);
-		remove.execute();
-		
-		AddComponent add =null;
-		System.out.println("adding new comp next");
-	
-		if(newCom.getParent() == null)
-			{
-			if(newCom instanceof BusinessProcess)
-			add=new AddComponent(Repository.getInstance(),newCom, position);
-			}
-		else
-		{
-			add= new AddComponent(newCom.getParent(),newCom, position);
-		}
-			
-		
-		add.execute();
-		System.out.println("finish edit execute");
+	@Override
+	public Object undoExecute() {
 
-		
-		return true;
+		RemoveComponent remove = new RemoveComponent(newParent,newCom);
+		remove.execute();
+
+		AddComponent add = null;
+
+		add = new AddComponent(oldParent, oldCom,
+				oldIndex);
+
+		return add.execute();
 	}
 
 }

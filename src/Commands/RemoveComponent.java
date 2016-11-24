@@ -1,5 +1,7 @@
 package Commands;
 
+import compoiste.CompositeComponent;
+
 import BusinessObjects.Action;
 import BusinessObjects.BusinessProcess;
 import BusinessObjects.Repository;
@@ -8,42 +10,44 @@ import BusinessObjects.Step;
 
 public class RemoveComponent extends ListCommand{
 	
+	RequirementComponent parent;
 	RequirementComponent child;
+	int index;
 	
-	public RemoveComponent(RequirementComponent child) {
+	public RemoveComponent(RequirementComponent parent, RequirementComponent child) {
 		this.child=child;
+		this.parent = parent;
 	}
 	
 	
-	public boolean execute()
+	@Override
+	public Object execute()
 	{
 		
-		Object parent = child.getParent();
-		
-		
-		if(child instanceof BusinessProcess)
-		{
-			Repository.getInstance().getBusinessProcessList().remove(child);
+		if(parent instanceof CompositeComponent){
+			int index = ((CompositeComponent)parent).getChild().indexOf(child);
+			
+			if(index == -1){
+				return false;
+			}
+			
+			this.index = index;
+			
+			((CompositeComponent)parent).remove(index);
 			
 			return true;
 		}
-		else if(child instanceof Step)
-		{
-					if(parent instanceof BusinessProcess)
-					((BusinessProcess)parent).getStepsList().remove(child);
-					
-			return true;
-		}
-		else if(child instanceof Action)
-		{
-			if(parent instanceof Step)
-			((Step)parent).getActionsList().remove(child);
-			
-			return true;
-		}
-		
 
 		return false;
+	}
+
+
+	@Override
+	public Object undoExecute() {
+		
+		ListCommand add = new AddComponent(parent, child, index);
+		
+		return add.execute();
 	}
 
 }
