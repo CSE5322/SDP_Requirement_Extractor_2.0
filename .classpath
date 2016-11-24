@@ -2,5 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Abhishek/Downloads/poi-bin-3.16-beta1-20161120/poi-3.16-beta1/poi-3.16-beta1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Abhishek/Downloads/poi-bin-3.16-beta1-20161120/poi-3.16-beta1/poi-ooxml-3.16-beta1.jar"/>
+	<classpathentry kind="lib" path="E:/Java Project/itextpdf-5.4.1.jar"/>
+	<classpathentry kind="lib" path="E:/Java Project/poi-3.16-beta1.jar"/>
+	<classpathentry kind="lib" path="E:/Java Project/poi-ooxml-3.16-beta1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
