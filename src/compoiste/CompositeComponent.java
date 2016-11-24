@@ -3,7 +3,6 @@ package compoiste;
 import java.util.ArrayList;
 import java.util.List;
 
-import BusinessObjects.Phrase;
 import BusinessObjects.RequirementComponent;
 
 public class CompositeComponent extends RequirementComponent{

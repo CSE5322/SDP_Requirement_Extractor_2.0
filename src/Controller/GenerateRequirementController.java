@@ -2,9 +2,10 @@ package Controller;
 
 import java.util.List;
 
+import compoiste.Phrase;
+
 import BusinessObjects.Action;
 import BusinessObjects.BusinessProcess;
-import BusinessObjects.Phrase;
 import BusinessObjects.Repository;
 import BusinessObjects.Step;
 import Commands.EditComponent;

@@ -1,4 +1,4 @@
-package BusinessObjects;
+package compoiste;
 
 public class Phrase {
 	private String verb;

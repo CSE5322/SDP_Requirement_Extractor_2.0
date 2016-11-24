@@ -2,6 +2,8 @@ package BusinessObjects;
 
 import javax.swing.tree.TreeNode;
 
+import compoiste.Phrase;
+
 public class Action extends RequirementComponent {
 	
 	

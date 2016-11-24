@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.tree.TreeNode;
 
+import compoiste.Phrase;
+
 public class Step extends RequirementComponent
 {
 

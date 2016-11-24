@@ -2,9 +2,9 @@ package Opeartion;
 
 import java.util.List;
 
-import BusinessObjects.Phrase;
 import BusinessObjects.RequirementComponent;
 import compoiste.CompositeComponent;
+import compoiste.Phrase;
 
 public interface OpeartionInterface {
 

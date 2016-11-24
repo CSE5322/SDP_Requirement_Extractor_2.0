@@ -1,6 +1,5 @@
 package compoiste;
 
-import BusinessObjects.Phrase;
 
 public abstract class RequirementComponenet {
 

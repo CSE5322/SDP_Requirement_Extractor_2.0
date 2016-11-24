@@ -2,6 +2,8 @@ package BusinessObjects;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import compoiste.Phrase;
+
 public class RequirementComponent  extends DefaultMutableTreeNode{
 	
 private Phrase phrase;

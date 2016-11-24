@@ -1,8 +1,9 @@
 package Controller;
 
+import compoiste.Phrase;
+
 import BusinessObjects.Action;
 import BusinessObjects.BusinessProcess;
-import BusinessObjects.Phrase;
 import BusinessObjects.Repository;
 import BusinessObjects.RequirementComponent;
 import BusinessObjects.Step;

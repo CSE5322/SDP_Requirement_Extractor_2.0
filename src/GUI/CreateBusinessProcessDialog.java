@@ -12,10 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import compoiste.Phrase;
+
 import BusinessObjects.BusinessProcess;
-import BusinessObjects.Phrase;
 import BusinessObjects.Repository;
 import Controller.DefineBusinessProcessController;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

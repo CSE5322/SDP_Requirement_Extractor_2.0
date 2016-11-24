@@ -3,7 +3,7 @@ package Opeartion;
 import java.util.List;
 
 import compoiste.CompositeComponent;
-import BusinessObjects.Phrase;
+import compoiste.Phrase;
 import BusinessObjects.RequirementComponent;
 
 public class OperationMgr {

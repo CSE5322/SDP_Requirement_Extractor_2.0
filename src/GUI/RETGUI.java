@@ -31,6 +31,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -48,9 +49,12 @@ import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JTree;
+
+import compoiste.Phrase;
 
 public class RETGUI extends JFrame {
 	//Hello Team 5 and Ravi and Ravi bhai

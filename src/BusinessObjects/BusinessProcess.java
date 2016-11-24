@@ -7,6 +7,8 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import compoiste.Phrase;
+
 public class BusinessProcess extends RequirementComponent 
 {
 	private ArrayList<Step> stepsList;
