@@ -45,6 +45,7 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 
 import java.awt.Label;
+import java.awt.List;
 import java.awt.Window;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -57,7 +58,7 @@ import javax.swing.JTree;
 import compoiste.Phrase;
 
 public class RETGUI extends JFrame {
-	//Hello Team 5 and Ravi and Ravi bhai
+	//
 
 	protected JTree tree = null;
 	protected DefaultMutableTreeNode root;
@@ -241,7 +242,7 @@ public class RETGUI extends JFrame {
 			}
 
 			public void AddVerbNounPairAsAction() throws BadLocationException {
-				Phrase tempPhrase = getPhrase();
+				ArrayList<String> tempPhrase = getPhrase();
 				CreateActionDialog actionDialog = new CreateActionDialog((RETGUI)currentFrame,tempPhrase);
 				actionDialog.setLocationRelativeTo(currentFrame);
 				actionDialog.setVisible(true);
@@ -422,7 +423,8 @@ public class RETGUI extends JFrame {
 		});
 	}
 
-	private Phrase getPhrase() throws BadLocationException {
+	private ArrayList<String> getPhrase() throws BadLocationException {
+		ArrayList<String> phrase=new ArrayList<String>();
 		String verb = null, noun = null;
 		for (Highlight highlight : highlighter.getHighlights()) {
 			if (highlight.getStartOffset() >= textArea.getSelectionStart()
@@ -437,7 +439,9 @@ public class RETGUI extends JFrame {
 				}
 			}
 		}
-		return new Phrase(verb, noun);
+		phrase.add(verb);
+		phrase.add(noun);
+		return phrase;
 	}
 	
 	
