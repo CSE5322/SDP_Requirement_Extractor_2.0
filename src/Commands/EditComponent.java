@@ -12,35 +12,28 @@ public class EditComponent extends ListCommand {
 	RequirementComponent oldCom;
 	RequirementComponent newCom;
 	
-	RequirementComponent oldParent;
-	RequirementComponent newParent;
-	
 	int oldIndex;
 	int newIndex;
 
 	public EditComponent(
 			RequirementComponent oldCom,
 			RequirementComponent newCom,
-			RequirementComponent oldParent,
-			RequirementComponent newParent,
-			int oldIndex,int newIndex) {
+			int newIndex) {
 		this.newCom = newCom;
 		this.oldCom = oldCom;
-		this.oldParent = oldParent;
-		this.newParent = newParent;
-		this.oldIndex = oldIndex;
 		this.newIndex = newIndex;
+		this.oldIndex = oldCom.getParent().getIndex(oldCom);
 	}
 
 	@Override
 	public Object execute() {
 
-		RemoveComponent remove = new RemoveComponent(oldParent,oldCom);
+		RemoveComponent remove = new RemoveComponent(oldCom);
 		remove.execute();
 
 		AddComponent add = null;
 
-		add = new AddComponent(newParent, newCom,
+		add = new AddComponent(newCom.getParent(), newCom,
 				newIndex);
 
 		return add.execute();
@@ -49,12 +42,12 @@ public class EditComponent extends ListCommand {
 	@Override
 	public Object undoExecute() {
 
-		RemoveComponent remove = new RemoveComponent(newParent,newCom);
+		RemoveComponent remove = new RemoveComponent(newCom);
 		remove.execute();
 
 		AddComponent add = null;
 
-		add = new AddComponent(oldParent, oldCom,
+		add = new AddComponent(oldCom.getParent(), oldCom,
 				oldIndex);
 
 		return add.execute();

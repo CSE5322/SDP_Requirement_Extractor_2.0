@@ -24,6 +24,7 @@ public class AddComponent extends ListCommand {
 		
 		if(parent instanceof CompositeComponent ){
 			((CompositeComponent) parent).addChildAt(index, child);
+			child.setParent(parent);
 			return true;
 		}
 		
@@ -32,11 +33,7 @@ public class AddComponent extends ListCommand {
 
 	@Override
 	public Object undoExecute(){
-		if(parent instanceof CompositeComponent ){
-			((CompositeComponent) parent).remove(index);
-			return true;
-		}
-		
-		return false;
+		RemoveComponent remove = new RemoveComponent(child);
+		return remove.execute();
 	}
 }

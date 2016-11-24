@@ -10,13 +10,14 @@ import BusinessObjects.Step;
 
 public class RemoveComponent extends ListCommand{
 	
-	RequirementComponent parent;
 	RequirementComponent child;
+	RequirementComponent parent;
+	
 	int index;
 	
-	public RemoveComponent(RequirementComponent parent, RequirementComponent child) {
-		this.child=child;
-		this.parent = parent;
+	public RemoveComponent(RequirementComponent child) {
+		this.child = child;
+		this.parent = child.getParent();
 	}
 	
 	

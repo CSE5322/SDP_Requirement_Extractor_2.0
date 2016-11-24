@@ -8,10 +8,13 @@ import BusinessObjects.RequirementComponent;
 
 public class GetComponent extends ListCommand{
 
-	private List<RequirementComponent> root;
+	private CompositeComponent root;
 	private int bpNum,stepNum,actionNum;
 	
-	public GetComponent(List<RequirementComponent> root, String id){
+	public GetComponent(CompositeComponent root, String id){
+		
+		this.root = root;
+		
 		String[] num = id.split(".");
     	
     	bpNum = Integer.parseInt(num[0]);
@@ -26,7 +29,7 @@ public class GetComponent extends ListCommand{
 		RequirementComponent child = null;
 		
 		if(bpNum != -1){
-			child = root.get(bpNum);
+			child = root.getChildAt(bpNum);
 			
 			if(stepNum != -1){
 				child = ((CompositeComponent)child).getChildAt(stepNum);

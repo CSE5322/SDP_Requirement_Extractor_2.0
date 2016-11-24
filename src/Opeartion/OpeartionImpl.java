@@ -1,26 +1,39 @@
 package Opeartion;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import compoiste.CompositeComponent;
 import BusinessObjects.RequirementComponent;
+import Commands.AddComponent;
+import Commands.EditComponent;
+import Commands.GetChild;
+import Commands.GetComponent;
 import Commands.ListCommand;
+import Commands.RemoveComponent;
 
 public class OpeartionImpl implements OpeartionInterface{
 
-	private Stack<ListCommand> commandUndoStack = new Stack<ListCommand>();
-    private Stack<ListCommand> commandRedoStack = new Stack<ListCommand>();
+	private static CompositeComponent root;
 	
+	private Stack<ListCommand> executedStack = new Stack<ListCommand>();
+    private Stack<ListCommand> undoneStack = new Stack<ListCommand>();
+	
+    public OpeartionImpl(){
+    	root = new CompositeComponent(null);
+    }
+    
     @Override
     public boolean undo()
     {
-        if (commandUndoStack.size() > 0)
+        if (executedStack.size() > 0)
         {
-        	ListCommand cmd = commandUndoStack.pop();
-            //Object result = cmd.undoExecute();
-            commandRedoStack.push(cmd); 
+        	ListCommand cmd = executedStack.pop();
+            Object result = cmd.undoExecute();
+            undoneStack.push(cmd); 
             
-            return true;
+            return (boolean)result;
         }
         
         return false;
@@ -29,45 +42,87 @@ public class OpeartionImpl implements OpeartionInterface{
     @Override
     public boolean redo()
     {
-        if (commandRedoStack.size() > 0)
+        if (undoneStack.size() > 0)
         {
-        	ListCommand cmd = commandRedoStack.pop();
-            //Object result = cmd.execute();
-            commandUndoStack.push(cmd);
-            return true;
+        	ListCommand cmd = undoneStack.pop();
+            Object result = cmd.execute();
+            executedStack.push(cmd);
+            return (boolean)result;
         }
         
         return false;
     }
-    
+
 	@Override
 	public boolean addComponent(RequirementComponent parent,
 			RequirementComponent child, int index) {
 		
-		return false;
+		ListCommand add = new AddComponent( parent,child, index);
+		
+		boolean result = (boolean)add.execute();
+		
+		if(result){
+			executedStack.push(add);
+		}
+		
+		return result;
 	}
 
 	@Override
-	public List<RequirementComponent> getComponent() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean removeComponent(RequirementComponent child) {
+		
+		ListCommand remove = new RemoveComponent(child);
+		
+		boolean result = (boolean)remove.execute();
+		
+		if(result){
+			executedStack.push(remove);
+		}
+		
+		return result;
 	}
 
 	@Override
-	public boolean editComponent() {
-		// TODO Auto-generated method stub
-		return false;
+	public List<RequirementComponent> getChild(RequirementComponent parent) {
+		
+		ListCommand getChild = new GetChild(parent);
+		
+		return (List<RequirementComponent>)getChild.execute();
+	}
+
+	@Override
+	public RequirementComponent getComponent(String id) {
+		
+		ListCommand getComponent =  new GetComponent(root, id);
+		
+		return (RequirementComponent) getComponent.execute();
+	}
+
+	@Override
+	public boolean editComponent(RequirementComponent oldCom,
+			RequirementComponent newCom, int newIndex) {
+
+		ListCommand edit = new EditComponent( oldCom,newCom,  newIndex);
+		
+		boolean result = (boolean)edit.execute();
+		
+		if(result){
+			executedStack.push(edit);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public String generateRequirement() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
-	public boolean exportRequirement() {
-		// TODO Auto-generated method stub
+	public boolean exportRequirement(String path) {
+		
 		return false;
 	}
+    
 }
