@@ -8,7 +8,7 @@ import compoiste.CompositeComponent;
 import BusinessObjects.RequirementComponent;
 import Commands.AddComponent;
 import Commands.EditComponent;
-import Commands.GetChild;
+import Commands.GetChildList;
 import Commands.GetComponent;
 import Commands.ListCommand;
 import Commands.RemoveComponent;
@@ -85,7 +85,7 @@ public class OpeartionImpl implements OpeartionInterface{
 	@Override
 	public List<RequirementComponent> getChild(RequirementComponent parent) {
 		
-		ListCommand getChild = new GetChild(parent);
+		ListCommand getChild = new GetChildList(parent);
 		
 		return (List<RequirementComponent>)getChild.execute();
 	}

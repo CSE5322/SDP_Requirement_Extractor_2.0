@@ -10,7 +10,7 @@ public interface OpeartionInterface {
 
 	public boolean addComponent(RequirementComponent parent,RequirementComponent child,int index);
 	public boolean removeComponent(RequirementComponent child);
-	public List<RequirementComponent> getChild(RequirementComponent parent);
+	public List<RequirementComponent> getChildList(RequirementComponent parent);
 	public RequirementComponent getComponent(String id);
 	
 	public boolean editComponent(

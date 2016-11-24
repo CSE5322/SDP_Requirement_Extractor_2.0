@@ -9,7 +9,7 @@ import BusinessObjects.BusinessProcess;
 import BusinessObjects.Repository;
 import BusinessObjects.Step;
 import Commands.EditComponent;
-import Commands.GetChild;
+import Commands.GetChildList;
 
 public class GenerateRequirementController {
 
@@ -19,7 +19,7 @@ public class GenerateRequirementController {
     public String generateRequirement(){
         requirement = "";
         
-        GetChild get = new GetChild(Repository.getInstance());
+        GetChildList get = new GetChildList(Repository.getInstance());
         get.execute();
         
         List<BusinessProcess> bpList = (List<BusinessProcess>)get.getResult();
@@ -29,7 +29,7 @@ public class GenerateRequirementController {
         	requirement = requirement 
         			+reqID+ bpList.get(i).getPhrase().getSentence() +"\n";
         	
-        	get = new GetChild(bpList.get(i));
+        	get = new GetChildList(bpList.get(i));
         	get.execute();
         	
         	List<Step> stepList = (List<Step>)get.getResult();
@@ -39,7 +39,7 @@ public class GenerateRequirementController {
         		requirement = requirement +
         				tab+stepID+ stepList.get(j).getPhrase().getSentence() +"\n";
         		
-        		get = new GetChild(stepList.get(j));
+        		get = new GetChildList(stepList.get(j));
             	get.execute();
             	
             	List<Action> actionList = (List<Action>)get.getResult();

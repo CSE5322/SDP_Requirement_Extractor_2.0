@@ -1,66 +1,121 @@
 package Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import compoiste.CompositeComponent;
 import compoiste.Phrase;
-
+import compoiste.PrimitiveComponent;
 import BusinessObjects.Action;
 import BusinessObjects.BusinessProcess;
 import BusinessObjects.Repository;
+import BusinessObjects.RequirementComponent;
 import BusinessObjects.Step;
 import Commands.AddComponent;
-import Commands.GetChild;
+import Commands.GetChildList;
+import Commands.RemoveComponent;
+import Opeartion.OperationMgr;
 
 public class DefineBusinessProcessController {
 	
-	public List<BusinessProcess> getBusinessProcesses(){
-		return Repository.getInstance().getBusinessProcessList();
+	public List<String> getBusinessProcesses(){
+		
+		List<String> bPList=new ArrayList<String>();
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		
+		List<RequirementComponent> BpList=opn.getChildList(opn.getComponent("-1.-1.-1"));
+		
+		
+		for (int i = 0; i < BpList.size(); i++) {
+			
+			bPList.add(i+".-1.-1");
+		
+		}
+		
+		return bPList;
+		
+		
 	}
 	
-	public List<Step> getSteps(BusinessProcess bp){
-		return bp.getStepsList();
+	public List<String> getSteps(String bpID){
+
+		String[] num =bpID.split(".");
+		List<String> stepList=new ArrayList<String>();
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		
+		List<RequirementComponent> StepList=opn.getChildList(opn.getComponent(bpID));
+		
+		
+		for (int i = 0; i < StepList.size(); i++) {
+			
+			stepList.add(num[0]+"."+i+".-1");
+		
+		}
+		
+		return stepList;
+		
+		
+		
 	}
 	
-	public List<Action> getActions(Step step){
-		return step.getActionsList();
+	public List<String> getActions(String step){
+
+
+		String[] num =step.split(".");
+		List<String> stepList=new ArrayList<String>();
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		
+		List<RequirementComponent> StepList=opn.getChildList(opn.getComponent(step));
+		
+		
+		for (int i = 0; i < StepList.size(); i++) {
+			
+			stepList.add(num[0]+"."+num[1]+"."+i);
+		
+		}
+		
+		return stepList;
+		
+		
+		
 	}
 
-	public void createBusinessProcess(String verb, String noun, String sentence, int position){
+	public void addCompositeComponent(String verb, String noun, String sentence, int position,String parentID){
 		
 		Phrase phrase = new Phrase(verb, noun);
 		
 		if(sentence!=null && sentence.length()>0)
 			phrase.setSentence(sentence);
 		
-		BusinessProcess bp = new BusinessProcess(phrase);
+		RequirementComponent businessProcess = new CompositeComponent(phrase);
 		
-		AddComponent add = new AddComponent(Repository.getInstance(), bp, position);
-		add.execute();
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		opn.addComponent(opn.getComponent(parentID), businessProcess, position);
+		
+		
 	}
 	
-    public void createStep(String verb, String noun, String sentence,BusinessProcess bp ,int position){
+
+    
+    public void addPrimitiveComponent(String verb, String noun, String sentence, String parentID ,int position){
 		
-        Phrase phrase = new Phrase(verb, noun);
+		Phrase phrase = new Phrase(verb, noun);
 		
 		if(sentence!=null && sentence.length()>0)
 			phrase.setSentence(sentence);
 		
-		Step step = new Step(phrase);
+		RequirementComponent businessProcess = new PrimitiveComponent(phrase);
 		
-		AddComponent add = new AddComponent(bp, step, position);
-		add.execute();
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		opn.addComponent(opn.getComponent(parentID), businessProcess, position);
+		
+		
 	}
     
-    public void addAction(String verb, String noun, String sentence, Step step ,int position){
-		
-    	Phrase phrase = new Phrase(verb, noun);
- 		
- 		if(sentence!=null && sentence.length()>0)
- 			phrase.setSentence(sentence);
- 		
- 		Action action = new Action(phrase);
- 		
- 		AddComponent add = new AddComponent(step, action, position);
- 		add.execute();
-	}
+    
 }

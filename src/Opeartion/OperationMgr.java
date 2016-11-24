@@ -30,8 +30,8 @@ public class OperationMgr {
 		return operation.removeComponent(child);
 	}
 	
-	public List<RequirementComponent> getChild(RequirementComponent parent){
-		return operation.getChild(parent);
+	public List<RequirementComponent> getChildList(RequirementComponent parent){
+		return operation.getChildList(parent);
 	}
 	
 	public RequirementComponent getComponent(String id){
