@@ -2,11 +2,9 @@ package Commands;
 
 import compoiste.CompositeComponent;
 
-import BusinessObjects.Action;
-import BusinessObjects.BusinessProcess;
-import BusinessObjects.Repository;
+
 import BusinessObjects.RequirementComponent;
-import BusinessObjects.Step;
+
 
 public class RemoveComponent extends ListCommand{
 	

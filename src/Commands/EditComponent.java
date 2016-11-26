@@ -2,11 +2,9 @@ package Commands;
 
 import org.omg.CORBA.RepositoryIdHelper;
 
-import BusinessObjects.Action;
-import BusinessObjects.BusinessProcess;
-import BusinessObjects.Repository;
+
 import BusinessObjects.RequirementComponent;
-import BusinessObjects.Step;
+
 
 public class EditComponent extends ListCommand {
 	RequirementComponent oldCom;
