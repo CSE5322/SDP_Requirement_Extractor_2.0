@@ -8,4 +8,7 @@ public class PrimitiveComponent extends RequirementComponent{
 		super(p);
 	}
 
+	
+	
+	
 }

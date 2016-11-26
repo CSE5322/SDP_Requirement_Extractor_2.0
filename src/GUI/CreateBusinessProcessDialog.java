@@ -35,16 +35,12 @@ public class CreateBusinessProcessDialog extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	
-	/**
-	 * Create the dialog.
-	 */
+
 	public CreateBusinessProcessDialog(RETGUI parent,ArrayList<String> phrase) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		{
 			{
-				
 				
 				{
 					txtVerb = new JTextField(phrase.get(0));
@@ -102,13 +98,11 @@ public class CreateBusinessProcessDialog extends JDialog {
 			
 					
 					
-					
-					
 					createButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg) {
 							
 							DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
-							System.out.println( " "+cbSequenceNumber.getSelectedIndex());
+						//	System.out.println( " "+cbSequenceNumber.getSelectedIndex());
 							
 							dbpController.addCompositeComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText() ,cbSequenceNumber.getSelectedIndex(),"-1.-1.-1");
 							

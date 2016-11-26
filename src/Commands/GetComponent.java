@@ -13,9 +13,12 @@ public class GetComponent extends ListCommand{
 	public GetComponent(CompositeComponent root, String id){
 		
 		this.root = root;
-		
-		String[] num = id.split(".");
+		System.out.println(id);
+		String[] num = id.split("\\.");
     	
+		
+	
+		
     	bpNum = Integer.parseInt(num[0]);
     	stepNum = Integer.parseInt(num[1]);
     	actionNum = Integer.parseInt(num[2]);
@@ -28,13 +31,13 @@ public class GetComponent extends ListCommand{
 		RequirementComponent child = root;
 		
 		if(bpNum != -1){
-			child = root.getChildAt(bpNum);
+			child = root.getChildObjAt(bpNum);
 			
 			if(stepNum != -1){
-				child = ((CompositeComponent)child).getChildAt(stepNum);
+				child = ((CompositeComponent)child).getChildObjAt(stepNum);
 				
 				if(actionNum != -1){
-					child = ((CompositeComponent)child).getChildAt(actionNum);
+					child = ((CompositeComponent)child).getChildObjAt(actionNum);
 				}
 			}
 		

@@ -109,26 +109,27 @@ public class CreateActionDialog extends JDialog {
 					List<String> businessProcesses=dbpController.getBusinessProcesses();
 
 					for(int i=0; i < businessProcesses.size(); i++)
-						cbBusinessProcess.addItem(businessProcesses.get(i));		
+						cbBusinessProcess.addItem(i+"");		
 					
 					
 		             for(int i=0; i < businessProcesses.size(); i++)
                      {
                             if(dbpController.getSteps(businessProcesses.get(i)).size()>0)
                                    {
-                                          cbBusinessProcess.setSelectedItem(businessProcesses.get(i));
+                                          cbBusinessProcess.setSelectedItem(i+"");
                                          break;
                                    }                                             
                      }
 
-					List<String> steps = dbpController.getSteps((String)cbBusinessProcess.getSelectedItem());
+					List<String> steps = dbpController.getSteps((String)cbBusinessProcess.getSelectedItem()+".-1.-1");
 
 					for(int i=0; i < steps.size(); i++)
-						cbStep.addItem(steps.get(i));	
+						cbStep.addItem(i+"");	
 					
 					
 
-					List<String> actions = dbpController.getActions((String)cbStep.getSelectedItem());
+					List<String> actions = dbpController.getActions((String)cbBusinessProcess.getSelectedItem()+"."+
+																	(String)cbStep.getSelectedItem()+".-1");
 					
 					for(int i = 1; i <= actions.size()+1; i++)
 						cbSequenceNumber.addItem(i);
@@ -145,7 +146,7 @@ public class CreateActionDialog extends JDialog {
 
 								DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 
-								dbpController.addPrimitiveComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), (String)cbStep.getSelectedItem(), cbSequenceNumber.getSelectedIndex());
+								dbpController.addPrimitiveComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbBusinessProcess.getSelectedItem() +"."+(String)cbStep.getSelectedItem()+".-1", cbSequenceNumber.getSelectedIndex());
 
 								parent.refreshTree();
 
@@ -168,12 +169,12 @@ public class CreateActionDialog extends JDialog {
 
 							String selectedBusinessProcess =(String) cbBusinessProcess.getSelectedItem();
 
-							List<String> steps = dbpController.getSteps(selectedBusinessProcess);
+							List<String> steps = dbpController.getSteps(selectedBusinessProcess+".-1.-1");
 
 							cbStep.removeAllItems();
 
 							for(int i = 0; i < steps.size(); i++)
-								cbStep.addItem(steps.get(i));															
+								cbStep.addItem(i+"");															
 						}
 					});		
 
@@ -184,7 +185,7 @@ public class CreateActionDialog extends JDialog {
 							{
 								String selectedStep = (String)cbStep.getSelectedItem();
 								
-								List<String> actions = dbpController.getActions(selectedStep);
+								List<String> actions = dbpController.getActions(cbBusinessProcess.getSelectedItem()+"."+selectedStep+".-1");
 
 
 								cbSequenceNumber.removeAllItems();

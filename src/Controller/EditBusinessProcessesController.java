@@ -12,10 +12,13 @@ import composite.RequirementComponent;
 
 public class EditBusinessProcessesController {
 
-	public void removeRequirementComponent(RequirementComponent requirementComponent)
+	public void removeRequirementComponent(String removedComponenet)
 	{
 		OperationMgr opManager = OperationMgr.getInstance();
-		opManager.removeComponent(requirementComponent);
+		CompositeComponent oldBpComponent = (CompositeComponent) opManager.getComponent(removedComponenet);
+		
+		
+		opManager.removeComponent(oldBpComponent);
 	}
 
 	public void editBusinessProcess(String oldBpId,String verb, String noun, String sentence, int position){

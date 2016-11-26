@@ -2,11 +2,17 @@ package composite;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 
 public abstract class RequirementComponent extends DefaultMutableTreeNode {
 
-	//
+
 	private RequirementComponent parent;	
+	private Phrase phrase;
+	
+	public RequirementComponent(Phrase p) {
+		this.phrase=p;
+	}
 	
 	public RequirementComponent getParent() {
 		return parent;
@@ -16,17 +22,25 @@ public abstract class RequirementComponent extends DefaultMutableTreeNode {
 		this.parent = parent;
 	}
 
-	private Phrase phrase;
 	
-	public RequirementComponent(Phrase p) {
-		this.phrase=phrase;
-	}
-
 	public void setPhrase(Phrase phrase){
 		this.phrase = phrase;
 	}
 	
 	public Phrase getPhrase(){
-		return phrase;
+		return this.phrase;
 	}
+	
+	public String toString()
+	{
+		
+		return this.getPhrase().getSentence();
+	}
+	
+	public int getChildCount() {
+	return 0;
+	}
+
+	  
+	
 }

@@ -1,7 +1,9 @@
 package GUI;
 
 import Commands.*;
+import Controller.DefineBusinessProcessController;
 import Controller.EditBusinessProcessesController;
+import Opeartion.OperationMgr;
 import composite.Phrase;
 import exportDocument.*;
 
@@ -194,7 +196,12 @@ public class RETGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg3) {
 				try {
 					
-					if(Repository.getInstance().getBusinessProcessList().size()!=0)
+
+
+					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
+				
+					
+					if(	dbpController.getBusinessProcesses().size()!=0)
 						AddVerbNounPairAsStep();
 					else
 						JOptionPane.showMessageDialog(new JFrame(), "You need to add a Business Process first!", "Dialog",
@@ -220,19 +227,21 @@ public class RETGUI extends JFrame {
 		mntmAddAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg4) {
 				try {
-					if(Repository.getInstance().getBusinessProcessList().size()!=0){
+
+					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
+				
+					if(	dbpController.getBusinessProcesses().size()!=0){
 						int num = 0;
-						for(int i = 0 ; i < Repository.getInstance().getBusinessProcessList().size();i++){
-							num = num + 
-									Repository.getInstance().getBusinessProcessList().get(i)
+					/*	for(int i = 0 ; i < 	dbpController.getBusinessProcesses().size();i++){
+							num = num +dbpController.getBusinessProcesses().get(i)
 									.getStepsList().size();
-						}
+						}*/
 						
-						if(num!=0)
+					//	if(num!=0)
 							AddVerbNounPairAsAction();
-						else
+						/*else
 							JOptionPane.showMessageDialog(new JFrame(), "You need to add a Step first!", "Dialog",
-							        JOptionPane.ERROR_MESSAGE);
+							        JOptionPane.ERROR_MESSAGE);*/
 					}else
 						JOptionPane.showMessageDialog(new JFrame(), "You need to add a Step first!", "Dialog",
 						        JOptionPane.ERROR_MESSAGE);
@@ -313,9 +322,15 @@ public class RETGUI extends JFrame {
 				
 				
 
-				Object editedObject = tree.getLastSelectedPathComponent();
+				String editedObject = getIdofNode(tree.getLastSelectedPathComponent());
+				//tree.getSelectionPath()
 				
-				if(editedObject instanceof BusinessProcess )
+
+			/*	EditBusinessProcessDialog editBpDialog=new EditBusinessProcessDialog((RETGUI)currentFrame, ( editedObject));
+				editBpDialog.setLocationRelativeTo(currentFrame);
+				editBpDialog.setVisible(true);*/
+				
+				if(editedObject.length() == 1 )
 				{
 					
 					EditBusinessProcessDialog editBpDialog=new EditBusinessProcessDialog((RETGUI)currentFrame, ((String) editedObject));
@@ -323,7 +338,7 @@ public class RETGUI extends JFrame {
 					editBpDialog.setVisible(true);
 					
 				}
-				else if(editedObject instanceof Step)
+				else if(editedObject.length() == 3)
 				{
 					EditStepDialog editStepDialog=new EditStepDialog((RETGUI)currentFrame, ((String) editedObject));
 					editStepDialog.setLocationRelativeTo(currentFrame);
@@ -331,9 +346,9 @@ public class RETGUI extends JFrame {
 					
 
 				}
-				else if(editedObject instanceof Action)
+				else if(editedObject.length() == 5)
 				{
-					EditActionDialog editActionDialog=new EditActionDialog((RETGUI)currentFrame, ((Action) editedObject));
+					EditActionDialog editActionDialog=new EditActionDialog((RETGUI)currentFrame, ((String) editedObject));
 					editActionDialog.setLocationRelativeTo(currentFrame);
 					editActionDialog.setVisible(true);
 					
@@ -355,7 +370,8 @@ public class RETGUI extends JFrame {
 				System.out.println(tree.getSelectionPath());
 				System.out.println(tree.getSelectionRows());
 				EditBusinessProcessesController businessProcessesController=new EditBusinessProcessesController();
-				businessProcessesController.removeRequirementComponent((RequirementComponent)removedObj);
+				
+				//businessProcessesController.removeRequirementComponent((RequirementComponent)removedObj);
 				refreshTree();
 			
 			}
@@ -367,7 +383,10 @@ public class RETGUI extends JFrame {
 	}
 
 	public void refreshTree() {
-		treeModel = new DefaultTreeModel(Repository.getInstance());
+		
+		DefineBusinessProcessController businessProcessController= new DefineBusinessProcessController();
+		
+		treeModel = businessProcessController.getTreeModel();
 		if (tree == null) {
 			
 			tree = new JTree(treeModel);
@@ -444,57 +463,26 @@ public class RETGUI extends JFrame {
 		phrase.add(noun);
 		return phrase;
 	}
+	public String getIdofNode(Object ob){
+		  String id = "";
+		  DefaultMutableTreeNode child = (DefaultMutableTreeNode)ob;
+		  DefaultMutableTreeNode parent = (DefaultMutableTreeNode) child.getParent();
+		  
+		  while(parent!=null){
+		   id = "." + parent.getIndex(child) + id;
+		   
+		   child = parent;
+		   parent = (DefaultMutableTreeNode) child.getParent();
+		  }
+		  
+		  id.replaceFirst(".", "");
+		  System.out.println("Selected ID");
+		  return id;
+		 }
+
 	
-	
-	public void createNodes() {/*
-		BusinessProcess bp1 = new BusinessProcess(new Phrase("verb1", "noun1"));
-		BusinessProcess bp2 = new BusinessProcess(new Phrase("verb2", "noun2"));
-		BusinessProcess bp3 = new BusinessProcess(new Phrase("verb3", "noun3"));
-
-		Step s1 = new Step(new Phrase("verb4", "noun4"));
-		Step s2 = new Step(new Phrase("verb5", "noun5"));
-		Step s3 = new Step(new Phrase("verb6", "noun6"));
-
-		Action a1 = new Action(new Phrase("verbA1", "nounA1"));
-		Action a2 = new Action(new Phrase("verbA1", "nounA1"));
-		Action a3 = new Action(new Phrase("verbA1", "nounA1"));
-
-		ListCommand cmd1 = new AddComponent(bp1, s1, 0);
-		cmd1.execute();
-		cmd1 = new AddComponent(bp1, s2, 1);
-		cmd1.execute();
-		cmd1 = new AddComponent(bp1, s3, 1);
-		cmd1.execute();
-		cmd1 = new AddComponent(s1, a1, 0);
-		cmd1.execute();
-		cmd1 = new AddComponent(s2, a2, 0);
-		cmd1.execute();
-		cmd1 = new AddComponent(s3, a3, 0);
-		cmd1.execute();
-		cmd1 = new AddComponent(repository, bp1, 0);
-		cmd1.execute();
-		cmd1 = new AddComponent(repository, bp2, 1);
-		cmd1.execute();
-		cmd1 = new AddComponent(repository, bp3, 1);
-		cmd1.execute();
-
-		for (int i = 0; i < arrBP.size(); i++) {
-			BusinessProcess = new DefaultMutableTreeNode(arrBP.get(i));
-			repository.add(BusinessProcess);
-
-			BusinessProcess.setUserObject(arrBP);
-			for (int j = 0; j < arrSP.size(); j++) {
-				Step = new DefaultMutableTreeNode(arrSP.get(j));
-				BusinessProcess.add(Step);
-
-				for (int k = 0; k < arrAC.size(); k++) {
-					Action = new DefaultMutableTreeNode(arrAC.get(k));
-					Step.add(Action);
-				}
-
-			}
-
-		}
-
-	*/}
+	public void createNodes() {
+		
+		
+	}
 }

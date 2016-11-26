@@ -42,15 +42,13 @@ public class DefineBusinessProcessController {
 		OperationMgr opn= OperationMgr.getInstance();
 		
 		
-		
-		
 		return new DefaultTreeModel(opn.getComponent("-1.-1.-1"));
 		
 	}
 	
 	public List<String> getSteps(String bpID){
 
-		String[] num =bpID.split(".");
+		String[] num =bpID.split("\\.");
 		List<String> stepList=new ArrayList<String>();
 		OperationMgr opn= OperationMgr.getInstance();
 		
@@ -75,7 +73,7 @@ public class DefineBusinessProcessController {
 	public List<String> getActions(String step){
 
 
-		String[] num =step.split(".");
+		String[] num =step.split("\\.");
 		List<String> stepList=new ArrayList<String>();
 		OperationMgr opn= OperationMgr.getInstance();
 		
@@ -116,11 +114,11 @@ public class DefineBusinessProcessController {
 		if(sentence!=null && sentence.length()>0)
 			phrase.setSentence(sentence);
 		
-		RequirementComponent businessProcess = new CompositeComponent(phrase);
+		RequirementComponent compositeComponent = new CompositeComponent(phrase);
 		
 		OperationMgr opn= OperationMgr.getInstance();
 		
-		opn.addComponent(opn.getComponent(parentID), businessProcess, position);
+		opn.addComponent(opn.getComponent(parentID), compositeComponent, position);
 		
 		
 	}

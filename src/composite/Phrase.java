@@ -7,6 +7,16 @@ public class Phrase {
 	private String noun;
 	private String sentence;
 	
+	public Phrase(String v, String n)
+	{
+		verb = v;
+		noun = n;
+		//Root node will not have verb and noun
+		if(v == null && n == null )
+			sentence="Requirements";
+		else
+		sentence = createSentence();
+	}
 	public String getSentence() {
 		return sentence;
 	}
@@ -32,17 +42,7 @@ public class Phrase {
 	}
 
 
-
-
-	
-	public Phrase(String v, String n)
-	{
-		verb = v;
-		noun = n;
-		sentence = createSentence();
-	}
-	
-	String createSentence()
+	private String createSentence()
 	{
 		return "The system shall allow the user to " + verb + " " + noun;
 	}

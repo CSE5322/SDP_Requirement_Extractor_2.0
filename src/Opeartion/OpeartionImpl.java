@@ -11,6 +11,7 @@ import Commands.GetComponent;
 import Commands.ListCommand;
 import Commands.RemoveComponent;
 import composite.CompositeComponent;
+import composite.Phrase;
 import composite.RequirementComponent;
 import exportDocument.ExportRequirement;
 
@@ -22,7 +23,7 @@ public class OpeartionImpl implements OpeartionInterface{
     private Stack<ListCommand> undoneStack = new Stack<ListCommand>();
 	
     public OpeartionImpl(){
-    	root = new CompositeComponent(null);
+    	root = new CompositeComponent(new Phrase(null,null));
     }
     
     @Override

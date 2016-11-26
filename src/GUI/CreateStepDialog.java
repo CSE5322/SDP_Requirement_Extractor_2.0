@@ -96,25 +96,29 @@ public class CreateStepDialog extends JDialog {
 					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 					List<String> businessProcesses=dbpController.getBusinessProcesses();
 					for(int i=0; i < businessProcesses.size(); i++)
-						cbBusinessProcess.addItem(businessProcesses.get(i));
+						cbBusinessProcess.addItem(""+i);
 					
 					//setting default BP
 		             for(int i=0; i < businessProcesses.size(); i++)
                     {
                            if(dbpController.getSteps(businessProcesses.get(i)).size()>0)
                                   {
-                                         cbBusinessProcess.setSelectedItem(businessProcesses.get(i));
+                                         cbBusinessProcess.setSelectedItem(i);
                                         break;
                                   }                                             
                     }
 
 		             
 		             //getting Steps List of a selected BP
-		             List<String> steps = dbpController.getSteps((String)cbBusinessProcess.getSelectedItem());
+		             List<String> steps = dbpController.getSteps((String)cbBusinessProcess.getSelectedItem()+".-1.-1");
 					
 		             
 		         	for(int i=0; i < steps.size()+1; i++)
-		         		cbSequenceNumber.addItem(steps.get(i));	
+		         		cbSequenceNumber.addItem(i);	
+		         	//	cbSequenceNumber.addItem(steps.get(i));	
+		         
+		         	//adding one more index to add new step at last position
+		         	//cbSequenceNumber.addItem(steps.get(i));	
 				
 		         	//setting default Step index
 					cbSequenceNumber.setSelectedIndex(steps.size());	
@@ -127,7 +131,7 @@ public class CreateStepDialog extends JDialog {
 							
 							DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 							
-							dbpController.addCompositeComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex(), (String)cbBusinessProcess.getSelectedItem());
+							dbpController.addCompositeComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex(), (String)cbBusinessProcess.getSelectedItem()+".-1.-1");
 							
 							parent.refreshTree();
 
@@ -143,12 +147,12 @@ public class CreateStepDialog extends JDialog {
 
 							String selectedBusinessProcess =(String) cbBusinessProcess.getSelectedItem();
 
-							List<String> steps = dbpController.getSteps(selectedBusinessProcess);
+							List<String> steps = dbpController.getSteps(selectedBusinessProcess+".-1.-1");
 
 							cbSequenceNumber.removeAllItems();
 
 							for(int i = 0; i < steps.size()+1; i++)
-								cbSequenceNumber.addItem(steps.get(i));		
+								cbSequenceNumber.addItem(i);		
 							
 							
 							cbSequenceNumber.setSelectedIndex(steps.size());	
