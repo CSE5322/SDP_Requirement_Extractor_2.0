@@ -16,9 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import compoiste.Phrase;
 
-import BusinessObjects.BusinessProcess;
-import BusinessObjects.Repository;
-import BusinessObjects.Step;
+
 import Controller.DefineBusinessProcessController;
 
 import java.awt.event.ActionListener;
@@ -186,14 +184,17 @@ public class CreateActionDialog extends JDialog {
 
 							if(cbStep.getItemCount() >=1)
 							{
-								Step selectedStep = (Step)cbStep.getSelectedItem();
+								String selectedStep = (String)cbStep.getSelectedItem();
+								
+								List<String> actions = dbpController.getActions(selectedStep);
+
 
 								cbSequenceNumber.removeAllItems();
 
-								for(int i = 1; i <= selectedStep.getChildCount()+1; i++)
+								for(int i = 1; i <= actions.size()+1; i++)
 									cbSequenceNumber.addItem(i);
 
-								cbSequenceNumber.setSelectedIndex(selectedStep.getChildCount());	
+								cbSequenceNumber.setSelectedIndex(actions.size());	
 							}
 						}
 					});

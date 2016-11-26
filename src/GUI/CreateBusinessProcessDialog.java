@@ -13,9 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import compoiste.Phrase;
-
+/*
 import BusinessObjects.BusinessProcess;
-import BusinessObjects.Repository;
+import BusinessObjects.Repository;*/
 import Controller.DefineBusinessProcessController;
 
 import java.awt.event.ActionListener;
@@ -109,7 +109,7 @@ public class CreateBusinessProcessDialog extends JDialog {
 							DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 							System.out.println( " "+cbSequenceNumber.getSelectedIndex());
 							
-							dbpController.createBusinessProcess(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
+							dbpController.addCompositeComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText() ,cbSequenceNumber.getSelectedIndex(),"-1.-1.-1");
 							
 							parent.refreshTree();
 							
