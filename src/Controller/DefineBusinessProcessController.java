@@ -43,6 +43,7 @@ public class DefineBusinessProcessController {
 		
 		
 		
+		
 		return new DefaultTreeModel(opn.getComponent("-1.-1.-1"));
 		
 	}
@@ -93,6 +94,20 @@ public class DefineBusinessProcessController {
 		
 		
 	}
+	
+	  public String[] getComponentPhraseInfo(String componentId)
+	    {
+	       OperationMgr opn= OperationMgr.getInstance();
+	       Phrase phrase = opn.getComponent(componentId).getPhrase();
+	       String[] phraseInfo = new String[3];
+	       if(phrase!=null)
+	       {
+	             phraseInfo[0] = phrase.getVerb();
+	             phraseInfo[1] = phrase.getNoun();
+	             phraseInfo[2] = phrase.getSentence();
+	       }
+	       return phraseInfo;
+	    }
 
 	public void addCompositeComponent(String verb, String noun, String sentence, int position,String parentID){
 		

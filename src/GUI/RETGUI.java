@@ -1,8 +1,9 @@
 package GUI;
 
-import BusinessObjects.*;
 import Commands.*;
 import Controller.EditBusinessProcessesController;
+import composite.Phrase;
+import exportDocument.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -55,8 +56,6 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JTree;
 
-import compoiste.Phrase;
-
 public class RETGUI extends JFrame {
 	//new
 
@@ -67,7 +66,6 @@ public class RETGUI extends JFrame {
 	public ArrayList<String> arrSP = new ArrayList<String>();
 	public ArrayList<String> arrAC = new ArrayList<String>();
 
-	Repository repository = Repository.getInstance();
 
 	private JPanel treePane;
 	DefaultMutableTreeNode BusinessProcess = null;

@@ -1,16 +1,14 @@
 package Controller;
 
-import compoiste.CompositeComponent;
-import compoiste.Phrase;
 
-import BusinessObjects.Action;
-import BusinessObjects.BusinessProcess;
-import BusinessObjects.Repository;
-import BusinessObjects.RequirementComponent;
-import BusinessObjects.Step;
+
 import Commands.EditComponent;
 import Commands.RemoveComponent;
 import Opeartion.OperationMgr;
+import composite.CompositeComponent;
+import composite.Phrase;
+import composite.PrimitiveComponent;
+import composite.RequirementComponent;
 
 public class EditBusinessProcessesController {
 
@@ -52,18 +50,19 @@ public class EditBusinessProcessesController {
 
 	}
 
-	public void editAction(Action oldAction, Step parent, String verb, String noun, String sentence, int position){
+	public void editAction(String oldActionId, String parentId, String verb, String noun, String sentence, int position){
 
 		Phrase phrase = new Phrase(verb, noun);
 
 		if(sentence!=null && sentence.length()>0)
 			phrase.setSentence(sentence);
 
-		Action newAction = new Action(phrase);
-
-		newAction.setParent(parent);
-
-		EditComponent edit = new EditComponent(oldAction,newAction,position);
-		edit.execute();
+		PrimitiveComponent newActionComponent = new PrimitiveComponent(phrase);		
+		OperationMgr opManager = OperationMgr.getInstance();
+		PrimitiveComponent oldActionComponent = (PrimitiveComponent) opManager.getComponent(oldActionId);
+		CompositeComponent parent = (CompositeComponent) opManager.getComponent(parentId);
+		newActionComponent.setParent(parent);
+		opManager.editComponent(oldActionComponent, newActionComponent, position);
+		
 	}
 }
