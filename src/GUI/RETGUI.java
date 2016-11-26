@@ -320,14 +320,14 @@ public class RETGUI extends JFrame {
 				if(editedObject instanceof BusinessProcess )
 				{
 					
-					EditBusinessProcessDialog editBpDialog=new EditBusinessProcessDialog((RETGUI)currentFrame, ((BusinessProcess) editedObject));
+					EditBusinessProcessDialog editBpDialog=new EditBusinessProcessDialog((RETGUI)currentFrame, ((String) editedObject));
 					editBpDialog.setLocationRelativeTo(currentFrame);
 					editBpDialog.setVisible(true);
 					
 				}
 				else if(editedObject instanceof Step)
 				{
-					EditStepDialog editStepDialog=new EditStepDialog((RETGUI)currentFrame, ((Step) editedObject));
+					EditStepDialog editStepDialog=new EditStepDialog((RETGUI)currentFrame, ((String) editedObject));
 					editStepDialog.setLocationRelativeTo(currentFrame);
 					editStepDialog.setVisible(true);
 					
