@@ -182,7 +182,7 @@ public class RETGUI extends JFrame {
 				
 				
 				ArrayList<String> tempPhrase = getPhrase();
-				
+
 				CreateBusinessProcessDialog bpDialog = new CreateBusinessProcessDialog((RETGUI)currentFrame,tempPhrase);
 				
 				bpDialog.setLocationRelativeTo(currentFrame);
@@ -448,7 +448,7 @@ public class RETGUI extends JFrame {
 	}
 	
 	
-	public void createNodes() {
+	public void createNodes() {/*
 		BusinessProcess bp1 = new BusinessProcess(new Phrase("verb1", "noun1"));
 		BusinessProcess bp2 = new BusinessProcess(new Phrase("verb2", "noun2"));
 		BusinessProcess bp3 = new BusinessProcess(new Phrase("verb3", "noun3"));
@@ -498,5 +498,5 @@ public class RETGUI extends JFrame {
 
 		}
 
-	}
+	*/}
 }
