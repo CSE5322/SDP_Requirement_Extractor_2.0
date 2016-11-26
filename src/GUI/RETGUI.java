@@ -58,7 +58,7 @@ import javax.swing.JTree;
 import compoiste.Phrase;
 
 public class RETGUI extends JFrame {
-	//
+	//new
 
 	protected JTree tree = null;
 	protected DefaultMutableTreeNode root;
