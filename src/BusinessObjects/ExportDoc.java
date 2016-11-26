@@ -6,10 +6,9 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
 import java.io.FileOutputStream;
 
-public class ExportDoc extends Export {
-	
-	@Override
-	public void ExportData() {
+public class ExportDoc extends ExportRequirement {
+
+	public void ExportDataDoc() {
 		XWPFDocument document = new XWPFDocument();
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run = paragraph.createRun();
@@ -18,7 +17,7 @@ public class ExportDoc extends Export {
 		
 		FileOutputStream output;
 		try {
-			output = new FileOutputStream("Requirements.docx");
+			output = new FileOutputStream(filePath);
 			document.write(output);
 			output.close();
 			document.close();

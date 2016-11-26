@@ -8,13 +8,17 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Controller.GenerateRequirementController;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GenerateDialog extends JDialog{
 	private final JPanel contentPanel = new JPanel();
@@ -35,12 +39,16 @@ public class GenerateDialog extends JDialog{
         text.setText(requirement);
         
         JScrollPane scrollPane = new JScrollPane(text);
-    	scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        
-        JButton export = new JButton("Export");
-        
-        
-		contentPanel.add(text);
+    	scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);	
+		contentPanel.add(scrollPane);
+		
+		 JButton export = new JButton("Export");
+	        export.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent arg0) {
+	        		JFileChooser fc = new JFileChooser();
+	        		fc.showSaveDialog(null);
+	        	}
+	        });
 		contentPanel.add(export);
 		
 		getContentPane().setLayout(new BorderLayout());

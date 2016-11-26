@@ -18,7 +18,7 @@ public class OperationMgr {
 		return instance;
 	}
 	
-	private OperationMgr(){
+	public OperationMgr(){
 		operation = new OpeartionImpl();
 	}
 	
@@ -46,8 +46,8 @@ public class OperationMgr {
 		return operation.generateRequirement();
 	}
 	
-	public boolean exportRequirement(String path){
-		return operation.exportRequirement(path);
+	public boolean exportRequirement(String requirement, String path, String extension){
+		return operation.exportRequirement(requirement, path, extension);
 	}
 	
 	public boolean undo(){

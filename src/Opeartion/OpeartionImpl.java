@@ -5,7 +5,12 @@ import java.util.List;
 import java.util.Stack;
 
 import compoiste.CompositeComponent;
+import BusinessObjects.Action;
+import BusinessObjects.BusinessProcess;
+import BusinessObjects.ExportRequirement;
+import BusinessObjects.Repository;
 import BusinessObjects.RequirementComponent;
+import BusinessObjects.Step;
 import Commands.AddComponent;
 import Commands.EditComponent;
 import Commands.GetChildList;
@@ -83,7 +88,7 @@ public class OpeartionImpl implements OpeartionInterface{
 	}
 
 	@Override
-	public List<RequirementComponent> getChild(RequirementComponent parent) {
+	public List<RequirementComponent> getChildList(RequirementComponent parent) {
 		
 		ListCommand getChild = new GetChildList(parent);
 		
@@ -115,13 +120,40 @@ public class OpeartionImpl implements OpeartionInterface{
 
 	@Override
 	public String generateRequirement() {
-
-		return null;
+		String requirement = "";
+		String tab = "      ";
+        
+        List<RequirementComponent> bpList = ((CompositeComponent)root).getChild();
+        
+        for(int i = 0; i< bpList.size(); i++){
+            String reqID = "R"+(i+1)+".";
+        	requirement = requirement 
+        			+reqID+ bpList.get(i).getPhrase().getSentence() +"\n";
+        	
+        	List<RequirementComponent> stepList = ((CompositeComponent)bpList.get(i)).getChild();
+        	
+        	for(int j = 0; j<stepList.size(); j++){
+        		String stepID = reqID + (j+1) +".";
+        		requirement = requirement +
+        				tab+stepID+ stepList.get(j).getPhrase().getSentence() +"\n";
+        		
+            	List<RequirementComponent> actionList = ((CompositeComponent)stepList.get(j)).getChild();
+            	
+            	for(int k =0; k<actionList.size(); k++){
+            		String actionID = stepID + (k+1) +".";
+            		requirement = requirement + tab+
+            				tab+actionID+ actionList.get(k).getPhrase().getSentence() +"\n";
+            	}
+        	}
+        }
+        
+		return requirement;
 	}
 
 	@Override
-	public boolean exportRequirement(String path) {
-		
+	public boolean exportRequirement(String requirement, String path, String extension) {
+		ExportRequirement exp = new ExportRequirement();
+		exp.ExportData(requirement, path, extension);
 		return false;
 	}
     

@@ -2,12 +2,11 @@ package BusinessObjects;
 
 import java.io.PrintWriter;
 
-public class ExportTxt extends Export{
+public class ExportTxt extends ExportRequirement{
 
-	@Override
-	public void ExportData() {
+	public void ExportDataTxt() {
 		try {
-			PrintWriter writer = new PrintWriter("Requirement.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter(filePath, "UTF-8");
 			writer.println(requirementData);
 			writer.close();
 		} catch (Exception e) {

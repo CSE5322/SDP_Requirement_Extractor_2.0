@@ -19,7 +19,7 @@ public interface OpeartionInterface {
 			int newIndex);
 	
 	public String generateRequirement();
-	public boolean exportRequirement(String path);
+	public boolean exportRequirement(String requirement, String path, String extension);
 	
 	public boolean undo();
 	public boolean redo();

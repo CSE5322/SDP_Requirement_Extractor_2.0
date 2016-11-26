@@ -6,13 +6,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 
-public class ExportPdf extends Export{
+public class ExportPdf extends ExportRequirement{
 
-	@Override
-	public void ExportData() {
+	public void ExportDataPdf() {
 		Document document = new Document();
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream("Requirement.pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream(filePath));
 			document.open();
 			Paragraph paragraph = new Paragraph();
 			paragraph.add(requirementData);

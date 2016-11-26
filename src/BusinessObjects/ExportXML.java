@@ -1,9 +1,8 @@
 package BusinessObjects;
 
-public class ExportXML extends Export {
+public class ExportXML extends ExportRequirement {
 
-	@Override
-	public void ExportData() {
+	public void ExportDataXML() {
 		try{
 			
 		}
