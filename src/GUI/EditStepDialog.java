@@ -36,14 +36,16 @@ public class EditStepDialog extends JDialog {
 	private JComboBox cbSequenceNumber;
 	private JLabel lblSequenceNo;
 	private JLabel lblBusinessProcess;
-	private JComboBox<BusinessProcess> cbBusinessProcess;
+	private JComboBox<String> cbBusinessProcess;
+	private EditBusinessProcessesController editBPController;
+	private DefineBusinessProcessController dbpController;
 
 	
 	
 	/**
 	 * Create the dialog.
 	 */
-	public EditStepDialog(RETGUI parent,Step step) {
+	public EditStepDialog(RETGUI parent,String stepId) {
 		setBounds(100, 100, 450, 324);
 		getContentPane().setLayout(null);
 		{
@@ -51,20 +53,20 @@ public class EditStepDialog extends JDialog {
 				
 				
 				{
-					txtVerb = new JTextField(step.getPhrase().getVerb());
+					txtVerb = new JTextField();
 					txtVerb.setBounds(171, 44, 86, 22);
 					getContentPane().add(txtVerb);
 					lblVerb = new JLabel("Verb : ");
 					lblVerb.setBounds(104, 41, 71, 28);
 					getContentPane().add(lblVerb);
 				
-					txtNoun = new JTextField(step.getPhrase().getNoun());
+					txtNoun = new JTextField();
 					txtNoun.setBounds(171, 79, 86, 22);
 					getContentPane().add(txtNoun);
 					lblNoun = new JLabel("Noun : ");
 					lblNoun.setBounds(104, 82, 64, 22);
 					getContentPane().add(lblNoun);
-					txtSentance = new JTextField(step.getPhrase().getSentence());
+					txtSentance = new JTextField();
 					txtSentance.setBounds(171, 114, 216, 22);
 					getContentPane().add(txtSentance);
 					
@@ -84,7 +86,7 @@ public class EditStepDialog extends JDialog {
 					lblBusinessProcess.setBounds(34, 178, 121, 28);
 					getContentPane().add(lblBusinessProcess);
 					
-					cbBusinessProcess = new JComboBox<BusinessProcess>();
+					cbBusinessProcess = new JComboBox<String>();
 					cbBusinessProcess.setBounds(171, 181, 216, 22);
 					getContentPane().add(cbBusinessProcess);					
 				
@@ -99,37 +101,42 @@ public class EditStepDialog extends JDialog {
 						getRootPane().setDefaultButton(saveButton);
 					
 									
-					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
-					BusinessProcess parentBP=(BusinessProcess) step.getParent();
-					List<BusinessProcess> businessProcesses=dbpController.getBusinessProcesses();
-					System.out.println(businessProcesses.size());
+					dbpController= new DefineBusinessProcessController();
+					editBPController=new EditBusinessProcessesController();
+					
+					String[] phraseInfo = dbpController.getComponentPhraseInfo(stepId);
+					txtVerb.setText(phraseInfo[0]);
+					txtNoun.setText(phraseInfo[1]);
+					txtSentance.setText(phraseInfo[2]);
+										
+					List<String> businessProcesses=dbpController.getBusinessProcesses();
 					for(int i=0; i < (businessProcesses.size()); i++)
 						cbBusinessProcess.addItem(businessProcesses.get(i));
 					
-					int tempIndexBp=Repository.getInstance().getBusinessProcessList().indexOf(parentBP);
+					String[] stepIdArr = stepId.split(".");
+					int parentBpIndex = Integer.parseInt(stepIdArr[0]);
+					int stepIndex =  Integer.parseInt(stepIdArr[1]);
 					
-					cbBusinessProcess.setSelectedItem(tempIndexBp);
+					cbBusinessProcess.setSelectedItem(parentBpIndex);
 					
+			/*		BusinessProcess parentBP=(BusinessProcess) step.getParent();
+					int tempIndexBp=Repository.getInstance().getBusinessProcessList().indexOf(parentBP);	
+					cbBusinessProcess.setSelectedItem(tempIndexBp);		*/
 					
-					
-					for(int i = 1; i <= (parentBP.getStepsList().size() ); i++)
+					for(int i = 1; i <= dbpController.getSteps(parentBpIndex+".-1.-1").size(); i++)
 						cbSequenceNumber.addItem(i);
 					
-					int tempIndexStep=((BusinessProcess)(step.getParent())).getStepsList().indexOf(step);
-					System.out.println("index : " +tempIndexStep);
-					cbSequenceNumber.setSelectedIndex(tempIndexStep);
+					cbSequenceNumber.setSelectedIndex(stepIndex);
+					
+			/*		int tempIndexStep=((BusinessProcess)(step.getParent())).getStepsList().indexOf(step);
+					cbSequenceNumber.setSelectedIndex(tempIndexStep);	*/
 						
 					saveButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg) {
-							
-							
-							EditBusinessProcessesController editBPController=new EditBusinessProcessesController();
-							System.out.println( "new selected Index "+cbSequenceNumber.getSelectedIndex());
-							editBPController.editStep(step, (BusinessProcess)cbBusinessProcess.getSelectedItem(), txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
-							
-							System.out.println("now refreshing tree");
-							
-							
+																					
+							editBPController.editStep(stepId, cbBusinessProcess.getSelectedIndex()+".-1.-1", txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
+						//	editBPController.editStep(step, (BusinessProcess)cbBusinessProcess.getSelectedItem(), txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
+
 							parent.refreshTree();
 
 							dispose();
@@ -141,14 +148,18 @@ public class EditStepDialog extends JDialog {
 					cbBusinessProcess.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg) {
 							
-							BusinessProcess selectedBusinessProcess = (BusinessProcess)cbBusinessProcess.getSelectedItem();
-							
-							cbSequenceNumber.removeAllItems();
-							
+						/*	BusinessProcess selectedBusinessProcess = (BusinessProcess)cbBusinessProcess.getSelectedItem();							
+							cbSequenceNumber.removeAllItems();							
 							for(int i = 1; i <= selectedBusinessProcess.size()+1; i++)
-								cbSequenceNumber.addItem(i);
+								cbSequenceNumber.addItem(i);							
+							cbSequenceNumber.setSelectedIndex(selectedBusinessProcess.size());			*/
 							
-							cbSequenceNumber.setSelectedIndex(selectedBusinessProcess.size());									
+							List<String> steps = dbpController.getSteps(cbBusinessProcess.getSelectedIndex()+".-1.-1");
+							cbSequenceNumber.removeAllItems();
+							for(int i = 1; i <= steps.size()+1; i++)
+								cbSequenceNumber.addItem(i);
+							cbSequenceNumber.setSelectedIndex(steps.size());
+							
 						}
 					});										
 					
