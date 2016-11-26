@@ -19,6 +19,7 @@ import BusinessObjects.Repository;*/
 import Controller.DefineBusinessProcessController;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class CreateBusinessProcessDialog extends JDialog {
@@ -38,7 +39,7 @@ public class CreateBusinessProcessDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CreateBusinessProcessDialog(RETGUI parent,Phrase phrase) {
+	public CreateBusinessProcessDialog(RETGUI parent,ArrayList<String> phrase) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		{
@@ -46,20 +47,20 @@ public class CreateBusinessProcessDialog extends JDialog {
 				
 				
 				{
-					txtVerb = new JTextField(phrase.getVerb());
+					txtVerb = new JTextField(phrase.get(0));
 					txtVerb.setBounds(171, 44, 86, 22);
 					getContentPane().add(txtVerb);
 					lblVerb = new JLabel("Verb : ");
 					lblVerb.setBounds(104, 41, 71, 28);
 					getContentPane().add(lblVerb);
 					
-					txtNoun = new JTextField(phrase.getNoun());
+					txtNoun = new JTextField(phrase.get(1));
 					txtNoun.setBounds(171, 79, 86, 22);
 					getContentPane().add(txtNoun);
 					lblNoun = new JLabel("Noun : ");
 					lblNoun.setBounds(104, 82, 64, 22);
 					getContentPane().add(lblNoun);
-					txtSentance = new JTextField(phrase.getSentence());
+					txtSentance = new JTextField("");
 					txtSentance.setBounds(171, 114, 216, 22);
 					getContentPane().add(txtSentance);
 					

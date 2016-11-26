@@ -180,7 +180,9 @@ public class RETGUI extends JFrame {
 			public void AddVerbNounPairAsBusinessProcess() throws BadLocationException {
 
 				
-				Phrase tempPhrase = getPhrase();
+				
+				ArrayList<String> tempPhrase = getPhrase();
+				
 				CreateBusinessProcessDialog bpDialog = new CreateBusinessProcessDialog((RETGUI)currentFrame,tempPhrase);
 				
 				bpDialog.setLocationRelativeTo(currentFrame);
@@ -207,7 +209,8 @@ public class RETGUI extends JFrame {
 
 			public void AddVerbNounPairAsStep() throws BadLocationException {
 				
-				Phrase tempPhrase = getPhrase();
+				ArrayList<String> tempPhrase = getPhrase();
+				//Phrase tempPhrase = getPhrase();
 				CreateStepDialog stepDialog = new CreateStepDialog((RETGUI)currentFrame,tempPhrase);
 				stepDialog.setLocationRelativeTo(currentFrame);
 				stepDialog.setVisible(true);
