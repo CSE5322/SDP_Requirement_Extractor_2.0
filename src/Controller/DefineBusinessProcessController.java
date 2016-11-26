@@ -3,16 +3,17 @@ package Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import compoiste.CompositeComponent;
-import compoiste.Phrase;
-import compoiste.PrimitiveComponent;
-
-import BusinessObjects.RequirementComponent;
+import javax.swing.tree.DefaultTreeModel;
 
 import Commands.AddComponent;
 import Commands.GetChildList;
 import Commands.RemoveComponent;
 import Opeartion.OperationMgr;
+import composite.CompositeComponent;
+import composite.Phrase;
+import composite.PrimitiveComponent;
+import composite.RequirementComponent;
+
 
 public class DefineBusinessProcessController {
 	
@@ -33,6 +34,16 @@ public class DefineBusinessProcessController {
 		
 		return bPList;
 		
+		
+	}
+	
+	public DefaultTreeModel getTreeModel()
+	{
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		
+		
+		return new DefaultTreeModel(opn.getComponent("-1.-1.-1"));
 		
 	}
 	
@@ -57,6 +68,8 @@ public class DefineBusinessProcessController {
 		
 		
 	}
+	
+	
 	
 	public List<String> getActions(String step){
 

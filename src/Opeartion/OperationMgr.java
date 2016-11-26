@@ -2,9 +2,9 @@ package Opeartion;
 
 import java.util.List;
 
-import compoiste.CompositeComponent;
-import compoiste.Phrase;
-import BusinessObjects.RequirementComponent;
+import composite.CompositeComponent;
+import composite.Phrase;
+import composite.RequirementComponent;
 
 public class OperationMgr {
 

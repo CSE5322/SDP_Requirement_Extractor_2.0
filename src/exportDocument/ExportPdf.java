@@ -1,4 +1,4 @@
-package BusinessObjects;
+package exportDocument;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;

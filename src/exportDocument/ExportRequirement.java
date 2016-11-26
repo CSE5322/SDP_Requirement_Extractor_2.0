@@ -1,4 +1,4 @@
-package BusinessObjects;
+package exportDocument;
 
 public class ExportRequirement {
 	String requirementData;

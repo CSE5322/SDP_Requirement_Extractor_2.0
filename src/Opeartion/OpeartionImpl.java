@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import compoiste.CompositeComponent;
-
-import BusinessObjects.ExportRequirement;
-
-import BusinessObjects.RequirementComponent;
-
 import Commands.AddComponent;
 import Commands.EditComponent;
 import Commands.GetChildList;
 import Commands.GetComponent;
 import Commands.ListCommand;
 import Commands.RemoveComponent;
+import composite.CompositeComponent;
+import composite.RequirementComponent;
+import exportDocument.ExportRequirement;
 
 public class OpeartionImpl implements OpeartionInterface{
 

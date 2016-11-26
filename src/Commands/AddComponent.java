@@ -1,8 +1,7 @@
 package Commands;
 
-import compoiste.CompositeComponent;
-
-import BusinessObjects.RequirementComponent;
+import composite.CompositeComponent;
+import composite.RequirementComponent;
 
 
 public class AddComponent extends ListCommand {

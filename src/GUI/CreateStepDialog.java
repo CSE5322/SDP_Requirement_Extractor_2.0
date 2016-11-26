@@ -12,9 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import compoiste.Phrase;
-
 import Controller.DefineBusinessProcessController;
+import composite.Phrase;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

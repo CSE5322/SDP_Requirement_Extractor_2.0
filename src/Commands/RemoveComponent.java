@@ -1,9 +1,8 @@
 package Commands;
 
-import compoiste.CompositeComponent;
+import composite.CompositeComponent;
+import composite.RequirementComponent;
 
-
-import BusinessObjects.RequirementComponent;
 
 
 public class RemoveComponent extends ListCommand{
@@ -32,7 +31,7 @@ public class RemoveComponent extends ListCommand{
 			
 			this.index = index;
 			
-			((CompositeComponent)parent).remove(index);
+			((CompositeComponent)parent).getChild().remove(index);
 			
 			return true;
 		}

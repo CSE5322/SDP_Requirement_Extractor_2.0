@@ -1,4 +1,4 @@
-package BusinessObjects;
+package exportDocument;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 

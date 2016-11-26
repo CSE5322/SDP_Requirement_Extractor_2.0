@@ -2,10 +2,8 @@ package Commands;
 
 import java.util.List;
 
-import compoiste.CompositeComponent;
-
-
-import BusinessObjects.RequirementComponent;
+import composite.CompositeComponent;
+import composite.RequirementComponent;
 
 
 public class GetChildList extends ListCommand{

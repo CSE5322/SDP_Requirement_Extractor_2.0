@@ -1,4 +1,4 @@
-package compoiste;
+package composite;
 
 public class Phrase {
 	

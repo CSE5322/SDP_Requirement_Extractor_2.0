@@ -1,4 +1,4 @@
-package BusinessObjects;
+package exportDocument;
 
 public class ExportXML extends ExportRequirement {
 

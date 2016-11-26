@@ -1,10 +1,7 @@
 package Commands;
 
-import org.omg.CORBA.RepositoryIdHelper;
-
-
-import BusinessObjects.RequirementComponent;
-
+import composite.CompositeComponent;
+import composite.RequirementComponent;
 
 public class EditComponent extends ListCommand {
 	RequirementComponent oldCom;
@@ -20,7 +17,7 @@ public class EditComponent extends ListCommand {
 		this.newCom = newCom;
 		this.oldCom = oldCom;
 		this.newIndex = newIndex;
-		this.oldIndex = oldCom.getParent().getIndex(oldCom);
+		this.oldIndex = ((CompositeComponent)oldCom.getParent()).getChild().indexOf(oldCom);
 	}
 
 	@Override
