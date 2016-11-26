@@ -3,7 +3,7 @@ package compoiste;
 
 public abstract class RequirementComponenet {
 
-	
+	//
 	
 	private Phrase phrase;
 	

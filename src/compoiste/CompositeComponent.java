@@ -6,7 +6,9 @@ import java.util.List;
 import BusinessObjects.RequirementComponent;
 
 public class CompositeComponent extends RequirementComponent{
-//
+
+	
+	
 	private String type;
 	private List<RequirementComponent> childList;
 	private int priority;
