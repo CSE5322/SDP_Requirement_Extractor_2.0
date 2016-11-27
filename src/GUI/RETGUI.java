@@ -330,32 +330,25 @@ public class RETGUI extends JFrame {
 				editBpDialog.setLocationRelativeTo(currentFrame);
 				editBpDialog.setVisible(true);*/
 				
-				if(editedObject.length() == 1 )
-				{
-					
+				if(editedObject.endsWith(".-1.-1"))
+				{					
 					EditBusinessProcessDialog editBpDialog=new EditBusinessProcessDialog((RETGUI)currentFrame, ((String) editedObject));
 					editBpDialog.setLocationRelativeTo(currentFrame);
-					editBpDialog.setVisible(true);
-					
+					editBpDialog.setVisible(true);					
 				}
-				else if(editedObject.length() == 3)
+				else if(editedObject.endsWith(".-1"))
 				{
 					EditStepDialog editStepDialog=new EditStepDialog((RETGUI)currentFrame, ((String) editedObject));
 					editStepDialog.setLocationRelativeTo(currentFrame);
-					editStepDialog.setVisible(true);
-					
-
+					editStepDialog.setVisible(true);					
 				}
-				else if(editedObject.length() == 5)
+				else //if(editedObject.length() == 5)
 				{
 					EditActionDialog editActionDialog=new EditActionDialog((RETGUI)currentFrame, ((String) editedObject));
 					editActionDialog.setLocationRelativeTo(currentFrame);
-					editActionDialog.setVisible(true);
-					
-				
+					editActionDialog.setVisible(true);									
 				}
-					
-				
+
 			}
 		});
 		editButton.setBounds(726, 72, 204, 29);
@@ -464,6 +457,7 @@ public class RETGUI extends JFrame {
 		return phrase;
 	}
 	public String getIdofNode(Object ob){
+		
 		  String id = "";
 		  DefaultMutableTreeNode child = (DefaultMutableTreeNode)ob;
 		  DefaultMutableTreeNode parent = (DefaultMutableTreeNode) child.getParent();

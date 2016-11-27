@@ -86,12 +86,12 @@ public class EditStepDialog extends JDialog {
 					cbBusinessProcess.setBounds(171, 181, 216, 22);
 					getContentPane().add(cbBusinessProcess);					
 				
-						JButton saveButton = new JButton("Save Step");
+						JButton saveButton = new JButton("Save");
 						saveButton.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
 							}
 						});
-						saveButton.setBounds(164, 223, 93, 22);
+						saveButton.setBounds(171, 216, 93, 22);
 						getContentPane().add(saveButton);
 						saveButton.setActionCommand("OK");
 						getRootPane().setDefaultButton(saveButton);
@@ -109,7 +109,7 @@ public class EditStepDialog extends JDialog {
 					for(int i=0; i < (businessProcesses.size()); i++)
 						cbBusinessProcess.addItem(businessProcesses.get(i));
 					
-					String[] stepIdArr = stepId.split(".");
+					String[] stepIdArr = stepId.split("\\.");
 					int parentBpIndex = Integer.parseInt(stepIdArr[0]);
 					int stepIndex =  Integer.parseInt(stepIdArr[1]);
 					
@@ -130,7 +130,7 @@ public class EditStepDialog extends JDialog {
 					saveButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg) {
 																					
-							editBPController.editStep(stepId, cbBusinessProcess.getSelectedIndex()+".-1.-1", txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
+							editBPController.editCompositeComponent(stepId, cbBusinessProcess.getSelectedIndex()+".-1.-1", txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
 						//	editBPController.editStep(step, (BusinessProcess)cbBusinessProcess.getSelectedItem(), txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
 
 							parent.refreshTree();

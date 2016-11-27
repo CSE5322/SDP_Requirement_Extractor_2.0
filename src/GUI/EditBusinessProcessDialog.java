@@ -93,14 +93,14 @@ public class EditBusinessProcessDialog extends JDialog {
 					for(int i = 1; i <=( numberOfBusinessProcess); i++)
 						cbSequenceNumber.addItem(i);
 					
-					int bpIndex = Integer.parseInt(bpId.split(".")[0]);
+					int bpIndex = Integer.parseInt(bpId.split("\\.")[0]);
 					cbSequenceNumber.setSelectedIndex(bpIndex);													
 
 					saveButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg) {
 
 							EditBusinessProcessesController editBPController=new EditBusinessProcessesController();
-							editBPController.editBusinessProcess(bpId, txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
+							editBPController.editCompositeComponent(bpId, null, txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
 
 							parent.refreshTree();
 

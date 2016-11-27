@@ -96,7 +96,7 @@ public class EditActionDialog extends JDialog {
 					getContentPane().add(cbStep);					
 
 
-					JButton saveButton = new JButton("Save Action");
+					JButton saveButton = new JButton("Save");
 					saveButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 						}
@@ -105,7 +105,6 @@ public class EditActionDialog extends JDialog {
 					getContentPane().add(saveButton);
 					saveButton.setActionCommand("OK");
 					getRootPane().setDefaultButton(saveButton);
-
 
 					dbpController= new DefineBusinessProcessController();
 					editBPController=new EditBusinessProcessesController();
@@ -120,7 +119,7 @@ public class EditActionDialog extends JDialog {
 					for(int i=0; i < businessProcesses.size(); i++)
 						cbBusinessProcess.addItem(businessProcesses.get(i));		
 					
-					String[] actionIdArr = actionId.split(".");
+					String[] actionIdArr = actionId.split("\\.");
 					int parentBpIndex = Integer.parseInt(actionIdArr[0]);
 					int parentStepIndex =  Integer.parseInt(actionIdArr[1]);
 					int actionIndex = Integer.parseInt(actionIdArr[2]);
@@ -154,7 +153,7 @@ public class EditActionDialog extends JDialog {
 							if(isBoxValid())
 							{
 								String parentId = cbBusinessProcess.getSelectedIndex() + "." + cbStep.getSelectedIndex() + ".-1";
-								editBPController.editAction(actionId, parentId,txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
+								editBPController.editPrimitiveComponent(actionId, parentId,txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
 							//	editBPController.editAction(action,(Step) cbStep.getSelectedItem(),txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex());
 								
 								parent.refreshTree();

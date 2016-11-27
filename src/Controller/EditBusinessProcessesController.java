@@ -28,15 +28,19 @@ public class EditBusinessProcessesController {
 
 		CompositeComponent newComponent = new CompositeComponent(phrase);		
 		OperationMgr opManager = OperationMgr.getInstance();
+		
+		CompositeComponent oldComponent = (CompositeComponent) opManager.getComponent(oldComponentId);		
+		newComponent.setChild(oldComponent.getChild());
 
 		if(parentId!=null)
 		{
 			RequirementComponent parent = opManager.getComponent(parentId);
 			newComponent.setParent(parent);
 		}
-
-		CompositeComponent oldComponent = (CompositeComponent) opManager.getComponent(oldComponentId);		
-		newComponent.setChild(oldComponent.getChild());
+		else
+		{
+			newComponent.setParent(oldComponent.getParent());
+		}
 
 		opManager.editComponent(oldComponent, newComponent, position);
 
