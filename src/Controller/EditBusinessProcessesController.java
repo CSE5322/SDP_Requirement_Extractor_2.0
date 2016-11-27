@@ -1,7 +1,5 @@
 package Controller;
 
-
-
 import Commands.EditComponent;
 import Commands.RemoveComponent;
 import Opeartion.OperationMgr;
@@ -15,57 +13,49 @@ public class EditBusinessProcessesController {
 	public void removeRequirementComponent(String removedComponenet)
 	{
 		OperationMgr opManager = OperationMgr.getInstance();
-		CompositeComponent oldBpComponent = (CompositeComponent) opManager.getComponent(removedComponenet);
-		
-		
-		opManager.removeComponent(oldBpComponent);
+		CompositeComponent oldComponent = (CompositeComponent) opManager.getComponent(removedComponenet);
+
+		opManager.removeComponent(oldComponent);
 	}
 
-	public void editBusinessProcess(String oldBpId,String verb, String noun, String sentence, int position){
-
-		Phrase phrase = new Phrase(verb, noun);
-
-		if(sentence!=null && sentence.length()>0)
-			phrase.setSentence(sentence);		
-
-		CompositeComponent newBpComponent = new CompositeComponent(phrase);
-		OperationMgr opManager = OperationMgr.getInstance();
-		CompositeComponent oldBpComponent = (CompositeComponent) opManager.getComponent(oldBpId);
-		newBpComponent.setChild(oldBpComponent.getChild());
-		opManager.editComponent(oldBpComponent, newBpComponent, position);
-
-	}
-
-	public void editStep(String oldStepId, String parentId, String verb, String noun, String sentence, int position){
-		
-		Phrase phrase = new Phrase(verb, noun);
-
-		if(sentence!=null && sentence.length()>0)
-			phrase.setSentence(sentence);
-		
-		CompositeComponent newStepComponent = new CompositeComponent(phrase);		
-		OperationMgr opManager = OperationMgr.getInstance();
-		CompositeComponent oldStepComponent = (CompositeComponent) opManager.getComponent(oldStepId);
-		CompositeComponent parent = (CompositeComponent) opManager.getComponent(parentId);
-		newStepComponent.setChild(oldStepComponent.getChild());
-		newStepComponent.setParent(parent);
-		opManager.editComponent(oldStepComponent, newStepComponent, position);
-
-	}
-
-	public void editAction(String oldActionId, String parentId, String verb, String noun, String sentence, int position){
+	public void editCompositeComponent(String oldComponentId, String parentId, String verb, String noun, String sentence, int position)
+	{
 
 		Phrase phrase = new Phrase(verb, noun);
 
 		if(sentence!=null && sentence.length()>0)
 			phrase.setSentence(sentence);
 
-		PrimitiveComponent newActionComponent = new PrimitiveComponent(phrase);		
+		CompositeComponent newComponent = new CompositeComponent(phrase);		
 		OperationMgr opManager = OperationMgr.getInstance();
-		PrimitiveComponent oldActionComponent = (PrimitiveComponent) opManager.getComponent(oldActionId);
-		CompositeComponent parent = (CompositeComponent) opManager.getComponent(parentId);
-		newActionComponent.setParent(parent);
-		opManager.editComponent(oldActionComponent, newActionComponent, position);
-		
+
+		if(parentId!=null)
+		{
+			RequirementComponent parent = opManager.getComponent(parentId);
+			newComponent.setParent(parent);
+		}
+
+		CompositeComponent oldComponent = (CompositeComponent) opManager.getComponent(oldComponentId);		
+		newComponent.setChild(oldComponent.getChild());
+
+		opManager.editComponent(oldComponent, newComponent, position);
+
 	}
+
+	public void editPrimitiveComponent(String oldComponentId, String parentId, String verb, String noun, String sentence, int position){
+
+		Phrase phrase = new Phrase(verb, noun);
+
+		if(sentence!=null && sentence.length()>0)
+			phrase.setSentence(sentence);
+
+		RequirementComponent newComponent = new PrimitiveComponent(phrase);		
+		OperationMgr opManager = OperationMgr.getInstance();
+		RequirementComponent oldComponent = opManager.getComponent(oldComponentId);
+		RequirementComponent parent = opManager.getComponent(parentId);
+		newComponent.setParent(parent);
+		opManager.editComponent(oldComponent, newComponent, position);
+
+	}
+
 }
