@@ -213,8 +213,7 @@ public class CreateActionDialog extends JDialog {
 		if(txtNoun.getText()==null || txtNoun.getText().equals(""))
 			return false;
 		
-		if(txtSentance.getText()==null || txtSentance.getText().equals(""))
-			return false;
+		
 		
 		if(cbSequenceNumber==null||cbSequenceNumber.getItemCount()==0)
 			return false;
