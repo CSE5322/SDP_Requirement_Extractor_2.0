@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
+
 public class CreateActionDialog extends JDialog {
 	private JLabel lblVerb;
 	private JLabel lblNoun;
