@@ -306,8 +306,8 @@ public class RETGUI extends JFrame {
 		btnGenerateRequirements.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				new GenerateDialog().setVisible(true);;
-				
+				new GenerateDialog().setVisible(true);
+				businessProcessController.setTreeModel(treeModel);
 			
 			}
 
