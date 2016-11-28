@@ -457,7 +457,7 @@ public class RETGUI extends JFrame {
 		return phrase;
 	}
 	public String getIdofNode(Object ob){
-		
+
 		  String id = "";
 		  DefaultMutableTreeNode child = (DefaultMutableTreeNode)ob;
 		  DefaultMutableTreeNode parent = (DefaultMutableTreeNode) child.getParent();
@@ -472,6 +472,7 @@ public class RETGUI extends JFrame {
 		  id.replaceFirst(".", "");
 		  System.out.println("Selected ID");
 		  return id;
+		  
 		 }
 
 	

@@ -117,7 +117,7 @@ public class EditActionDialog extends JDialog {
 					List<String> businessProcesses=dbpController.getBusinessProcesses();
 
 					for(int i=0; i < businessProcesses.size(); i++)
-						cbBusinessProcess.addItem(businessProcesses.get(i));		
+						cbBusinessProcess.addItem(i+"");								
 					
 					String[] actionIdArr = actionId.split("\\.");
 					int parentBpIndex = Integer.parseInt(actionIdArr[0]);
@@ -134,7 +134,7 @@ public class EditActionDialog extends JDialog {
 			//		List<Step> steps = dbpController.getSteps(((BusinessProcess)cbBusinessProcess.getSelectedItem()));
 										
 					for(int i=0; i < steps.size(); i++)
-						cbStep.addItem(steps.get(i));	
+						cbStep.addItem(i+"");	
 					
 					int actionsCount = dbpController.getActions(parentBpIndex+"."+parentStepIndex+".-1").size();
 					

@@ -107,7 +107,7 @@ public class EditStepDialog extends JDialog {
 										
 					List<String> businessProcesses=dbpController.getBusinessProcesses();
 					for(int i=0; i < (businessProcesses.size()); i++)
-						cbBusinessProcess.addItem(businessProcesses.get(i));
+						cbBusinessProcess.addItem(""+i);
 					
 					String[] stepIdArr = stepId.split("\\.");
 					int parentBpIndex = Integer.parseInt(stepIdArr[0]);
