@@ -76,7 +76,7 @@ public class ExportXML extends ExportRequirement {
 				childElement.appendChild(childStepElement);
 				List<RequirementComponent> childListAction = childStep.getChild();
 				for (int k = 0; k < childListAction.size(); k++){
-					CompositeComponent childAction = (CompositeComponent) childListStep.get(k);
+					PrimitiveComponent childAction = (PrimitiveComponent) childListAction.get(k);
 					String childActionValue = childAction.getPhrase().getSentence();
 					Element childActionElement = childStepElement.getOwnerDocument().createElement("Action");
 					Attr attrActionName = childActionElement.getOwnerDocument().createAttribute("value");
