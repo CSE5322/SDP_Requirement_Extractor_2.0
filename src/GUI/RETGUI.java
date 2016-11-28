@@ -303,6 +303,7 @@ public class RETGUI extends JFrame {
 		treePane.add(btnNewButton_1);
 
 		JButton btnGenerateRequirements = new JButton("Generate Requirement");
+		DefineBusinessProcessController businessProcessController = new DefineBusinessProcessController();
 		btnGenerateRequirements.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
