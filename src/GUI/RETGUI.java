@@ -361,12 +361,9 @@ public class RETGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				Object removedObj = tree.getLastSelectedPathComponent();
-				System.out.println(removedObj);
-				System.out.println(tree.getSelectionPath());
-				System.out.println(tree.getSelectionRows());
 				EditBusinessProcessesController businessProcessesController=new EditBusinessProcessesController();
 				
-				//businessProcessesController.removeRequirementComponent((RequirementComponent)removedObj);
+				businessProcessesController.removeRequirementComponent(getIdofNode(removedObj));
 				refreshTree();
 			
 			}
