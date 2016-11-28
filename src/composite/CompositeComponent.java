@@ -60,16 +60,25 @@ public class CompositeComponent extends RequirementComponent{
         return (TreeNode)childList.get(index);
     }
 
-/**
- * Returns the number of children of this node.
- *
- * @return  an int giving the number of children of this node
- */
-public int getChildCount() {
-    if (childList == null) {
-        return 0;
-    } else {
-        return childList.size();
-    }
-}
+	@Override
+	public int getChildCount() {
+	    if (childList == null) {
+	        return 0;
+	    } else {
+	        return childList.size();
+	    }
+	}
+	
+	@Override
+	public int getIndex(TreeNode child){
+		if(child instanceof RequirementComponent){
+			for(int i = 0; i<childList.size(); i++){
+				if(child == childList.get(i)){
+					return i;
+				}
+			}
+		}
+		
+		return -1;
+	}
 }
