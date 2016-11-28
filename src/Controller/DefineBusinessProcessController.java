@@ -25,9 +25,6 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 public class DefineBusinessProcessController {
 	
-	//Variables for Stanfor NLP
-	static String modelFile;
-	static MaxentTagger tagger;	
 	static DefaultTreeModel treeModel;
 	
 	public List<String> getBusinessProcesses(){
@@ -206,42 +203,5 @@ public class DefineBusinessProcessController {
 		
 		
 	}
-    
-    
-    
-	public static void initializeAutoHighlighter()
-	{
-		modelFile = "model/english-bidirectional-distsim.tagger";
-		tagger = new MaxentTagger(modelFile);
-	}
-	
-	public static void autoHighlight(String text, Highlighter highlighter)
-	{
-		StringReader stringReader = new StringReader(text);
-
-		List<List<HasWord>> sentences = MaxentTagger.tokenizeText(stringReader);			    
-
-		try
-		{
-			for (List<HasWord> sentence : sentences) 
-			{
-				List<TaggedWord> tSentence = tagger.tagSentence(sentence);  
-				for(TaggedWord tword : tSentence) 
-				{
-					if(tword.value().equals("-RRB-") || tword.value().equals("-LRB-"))
-						continue;
-
-					if(tword.tag().equals("VBG") || tword.tag().equals("VBZ"))   //VBZ VBP
-						highlighter.addHighlight(tword.beginPosition(), tword.endPosition(), new DefaultHighlighter.DefaultHighlightPainter(Color.yellow));
-					else if(tword.tag().equals("NN"))
-						highlighter.addHighlight(tword.beginPosition(), tword.endPosition(),new DefaultHighlighter.DefaultHighlightPainter(Color.green));
-				}			      
-			}
-		}catch(BadLocationException ex)
-		{
-			ex.printStackTrace();
-		}
-	}
-
     
 }

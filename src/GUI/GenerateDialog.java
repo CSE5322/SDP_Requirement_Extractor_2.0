@@ -32,19 +32,14 @@ public class GenerateDialog extends JDialog{
 		
 		controller = new GenerateRequirementController();
 		String requirement = controller.generateRequirement();
-        contentPanel.setLayout(null);
-
-        JTextArea text = new JTextArea();
-        text.setBounds(0, 0, 500, 500);
-        text.setText(requirement);
         
-        JScrollPane scrollPane = new JScrollPane(text);
-        scrollPane.setBounds(0, 0, 654, 679);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(0, 0, 632, 629);
     	scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);	
-		contentPanel.add(scrollPane);
+		
 		
 		 JButton export = new JButton("Export");
-		 export.setBounds(280, 679, 85, 29);
+		 export.setBounds(281, 636, 79, 29);
 	        export.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent arg0) {
 	        		JFileChooser fc = new JFileChooser();
@@ -73,7 +68,13 @@ public class GenerateDialog extends JDialog{
 				exp.exportRequirement();
 	        	}
 	        });
+		contentPanel.setLayout(null);
 		contentPanel.add(export);
+		contentPanel.add(scrollPane);
+		
+		        JTextArea text = new JTextArea();
+		        scrollPane.setViewportView(text);
+		        text.setText(requirement);
 		
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

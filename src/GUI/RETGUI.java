@@ -3,8 +3,8 @@ package GUI;
 import Commands.*;
 import Controller.DefineBusinessProcessController;
 import Controller.EditBusinessProcessesController;
+import Controller.HighlightPhraseController;
 import Opeartion.OperationMgr;
-
 import exportDocument.*;
 
 import java.awt.BorderLayout;
@@ -115,7 +115,7 @@ public class RETGUI extends JFrame {
 		treePane.add(textArea);
 
 		highlighter = textArea.getHighlighter();
-		DefineBusinessProcessController.initializeAutoHighlighter();
+		HighlightPhraseController.initializeAutoHighlighter();
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(textArea, popupMenu);
@@ -376,7 +376,7 @@ public class RETGUI extends JFrame {
 		autoHighlightButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DefineBusinessProcessController.autoHighlight(textArea.getText(), highlighter);
+				HighlightPhraseController.autoHighlight(textArea.getText(), highlighter);
 				
 			}
 		});
