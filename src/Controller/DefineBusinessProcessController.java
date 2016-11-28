@@ -136,7 +136,7 @@ public class DefineBusinessProcessController {
 	       return phraseInfo;
 	    }
 
-	public void addCompositeComponent(String verb, String noun, String sentence, int position,String parentID){
+	/*public void addCompositeComponent(String verb, String noun, String sentence, int position,String parentID){
 		
 		Phrase phrase = new Phrase(verb, noun);
 		
@@ -168,7 +168,46 @@ public class DefineBusinessProcessController {
 		opn.addComponent(opn.getComponent(parentID), businessProcess, position);
 		
 		
+	}*/
+    
+    
+    public void addRequirementComponent(String verb, String noun, String sentence , String parentID,int position){
+		
+		Phrase phrase = new Phrase(verb, noun);
+		
+		if(sentence!=null && sentence.length()>0)
+			phrase.setSentence(sentence);
+		
+		String[] num = parentID.split("\\.");
+    	int bp = Integer.parseInt(num[0]);
+    	int step = Integer.parseInt(num[1]);
+    	int action = Integer.parseInt(num[2]);
+    	
+    	
+		
+    	RequirementComponent component = null ;
+  	
+		if(bp != -1 && step != -1 && action==-1)
+		{
+			 component = new PrimitiveComponent(phrase);
+			// System.out.println("primitive created");
+			
+		}
+		else
+		{
+			component = new CompositeComponent(phrase);
+		//System.out.println("composite created");
+			
+		}
+		
+		OperationMgr opn= OperationMgr.getInstance();
+		
+		opn.addComponent(opn.getComponent(parentID), component, position);
+		
+		
 	}
+    
+    
     
 	public static void initializeAutoHighlighter()
 	{

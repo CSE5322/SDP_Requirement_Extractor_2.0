@@ -81,4 +81,33 @@ public class CompositeComponent extends RequirementComponent{
 		
 		return -1;
 	}
+	
+	public String generate(String parentString)
+	{
+		parentString = "    "+parentString;
+
+        String Sent=this.getPhrase().getSentence();
+        String childString="";
+        for(int i = 1; i< this.childList.size()+1; i++){
+            
+            childString = childString 
+        			+this.childList.get(i-1).generate(parentString +"."+i) ;
+        
+        }
+        
+		
+        if((this.getPhrase().getSentence().equalsIgnoreCase("Requirements")))
+        {
+        	return " "+Sent +"\n" +  childString;
+        	//return  parentString + " "+Sent +"\n" +  childString;
+        }
+        else
+        {
+        	return  parentString + " "+Sent +"\n" +  childString;
+        }
+        
+		
+		
+	}
+	
 }

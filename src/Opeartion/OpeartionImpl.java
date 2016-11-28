@@ -115,35 +115,15 @@ public class OpeartionImpl implements OpeartionInterface{
 		return result;
 	}
 
-	@Override
+
+	
+
 	public String generateRequirement() {
 		String requirement = "";
 		String tab = "      ";
-        
-        List<RequirementComponent> bpList = ((CompositeComponent)root).getChild();
-        
-        for(int i = 0; i< bpList.size(); i++){
-            String reqID = "R"+(i+1)+".";
-        	requirement = requirement 
-        			+reqID+ bpList.get(i).getPhrase().getSentence() +"\n";
-        	
-        	List<RequirementComponent> stepList = ((CompositeComponent)bpList.get(i)).getChild();
-        	
-        	for(int j = 0; j<stepList.size(); j++){
-        		String stepID = reqID + (j+1) +".";
-        		requirement = requirement +
-        				tab+stepID+ stepList.get(j).getPhrase().getSentence() +"\n";
-        		
-            	List<RequirementComponent> actionList = ((CompositeComponent)stepList.get(j)).getChild();
-            	
-            	for(int k =0; k<actionList.size(); k++){
-            		String actionID = stepID + (k+1) +".";
-            		requirement = requirement + tab+
-            				tab+actionID+ actionList.get(k).getPhrase().getSentence() +"\n";
-            	}
-        	}
-        }
-        
+		requirement=root.generate("R");
+		System.out.println(requirement);
+
 		return requirement;
 	}
 

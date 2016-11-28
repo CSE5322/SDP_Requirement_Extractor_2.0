@@ -103,6 +103,9 @@ public class CreateStepDialog extends JDialog {
 					for(int i=0; i < businessProcesses.size(); i++)
 						cbBusinessProcess.addItem(""+i);
 					
+					
+			//		 cbBusinessProcess.setSelectedItem(i);
+					
 					//setting default BP
 		             for(int i=0; i < businessProcesses.size(); i++)
                     {
@@ -136,7 +139,7 @@ public class CreateStepDialog extends JDialog {
 							
 							DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 							
-							dbpController.addCompositeComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbSequenceNumber.getSelectedIndex(), (String)cbBusinessProcess.getSelectedItem()+".-1.-1");
+							dbpController.addRequirementComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), (String)cbBusinessProcess.getSelectedItem()+".-1.-1", cbSequenceNumber.getSelectedIndex());
 							
 							parent.refreshTree();
 

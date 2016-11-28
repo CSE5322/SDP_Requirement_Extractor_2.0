@@ -153,7 +153,7 @@ public class CreateActionDialog extends JDialog {
 
 								DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 
-								dbpController.addPrimitiveComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbBusinessProcess.getSelectedItem() +"."+(String)cbStep.getSelectedItem()+".-1", cbSequenceNumber.getSelectedIndex());
+								dbpController.addRequirementComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText(), cbBusinessProcess.getSelectedItem() +"."+(String)cbStep.getSelectedItem()+".-1", cbSequenceNumber.getSelectedIndex());
 
 								parent.refreshTree();
 

@@ -41,6 +41,11 @@ public abstract class RequirementComponent extends DefaultMutableTreeNode {
 	return 0;
 	}
 
+	public String generate(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	  
 	
 }

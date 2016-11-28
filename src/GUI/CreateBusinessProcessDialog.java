@@ -109,7 +109,7 @@ public class CreateBusinessProcessDialog extends JDialog {
 							DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 						//	System.out.println( " "+cbSequenceNumber.getSelectedIndex());
 							
-							dbpController.addCompositeComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText() ,cbSequenceNumber.getSelectedIndex(),"-1.-1.-1");
+							dbpController.addRequirementComponent(txtVerb.getText(), txtNoun.getText(), txtSentance.getText() ,"-1.-1.-1",cbSequenceNumber.getSelectedIndex());
 							
 							parent.refreshTree();
 							
