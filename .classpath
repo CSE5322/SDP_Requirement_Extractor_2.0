@@ -9,8 +9,8 @@
 	<classpathentry kind="lib" path="libs/poi-scratchpad-3.15.jar"/>
 	<classpathentry kind="lib" path="libs/curvesapi-1.04.jar"/>
 	<classpathentry kind="lib" path="libs/xmlbeans-2.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tusha/Downloads/stanford-postagger-2015-12-09/stanford-postagger-2015-12-09/lib/slf4j-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tusha/Downloads/stanford-postagger-2015-12-09/stanford-postagger-2015-12-09/lib/slf4j-simple.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tusha/Downloads/stanford-postagger-2015-12-09/stanford-postagger-2015-12-09/stanford-postagger.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-simple.jar"/>
+	<classpathentry kind="lib" path="libs/stanford-postagger.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
