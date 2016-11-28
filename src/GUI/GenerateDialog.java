@@ -47,17 +47,24 @@ public class GenerateDialog extends JDialog{
 	        export.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent arg0) {
 	        		JFileChooser fc = new JFileChooser();
-	        		fc.showSaveDialog(null);
-				FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("txt Files (*.txt)", "txt");
-				//fc.setFileFilter(txtFilter);
-				File file = fc.getSelectedFile();
-				String filePath = file.getAbsolutePath();
-				String fileName = file.getName();
-				String extension = "";
-				if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0){
-					extension = fileName.substring(fileName.lastIndexOf(".")+1);
-				}
 
+
+				FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("txt","txt");
+				FileNameExtensionFilter docFilter = new FileNameExtensionFilter("doc","doc");
+				FileNameExtensionFilter pdfFilter = new FileNameExtensionFilter("pdf","pdf");
+				FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("xml","xml");
+
+				fc.addChoosableFileFilter(txtFilter);
+				fc.addChoosableFileFilter(docFilter);
+				fc.addChoosableFileFilter(pdfFilter);
+				fc.addChoosableFileFilter(xmlFilter);
+				
+				fc.setAcceptAllFileFilterUsed(false);
+				fc.showSaveDialog(null);
+
+				File file = fc.getSelectedFile();
+				String filePath = file.getAbsolutePath() + "." + fc.getFileFilter().getDescription();
+				String extension = fc.getFileFilter().getDescription();
 				ExportRequirementController exp = new ExportRequirementController();
 				exp.setExtension(extension);
 				exp.setPath(filePath);
