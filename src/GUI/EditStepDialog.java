@@ -113,7 +113,7 @@ public class EditStepDialog extends JDialog {
 					int parentBpIndex = Integer.parseInt(stepIdArr[0]);
 					int stepIndex =  Integer.parseInt(stepIdArr[1]);
 					
-					cbBusinessProcess.setSelectedItem(parentBpIndex);
+					cbBusinessProcess.setSelectedIndex(parentBpIndex);
 					
 			/*		BusinessProcess parentBP=(BusinessProcess) step.getParent();
 					int tempIndexBp=Repository.getInstance().getBusinessProcessList().indexOf(parentBP);	

@@ -124,7 +124,7 @@ public class EditActionDialog extends JDialog {
 					int parentStepIndex =  Integer.parseInt(actionIdArr[1]);
 					int actionIndex = Integer.parseInt(actionIdArr[2]);
 					
-					cbBusinessProcess.setSelectedItem(parentBpIndex);
+					cbBusinessProcess.setSelectedIndex(parentBpIndex);
 					
 			//		Step tempStep=(Step)action.getParent();					
 			//		cbBusinessProcess.setSelectedItem(tempStep.getParent());
@@ -142,7 +142,7 @@ public class EditActionDialog extends JDialog {
 						cbSequenceNumber.addItem(i);
 				
 					cbSequenceNumber.setSelectedIndex(actionIndex);
-					cbStep.setSelectedItem(parentStepIndex);
+					cbStep.setSelectedIndex(parentStepIndex);
 					
 			//		cbSequenceNumber.setSelectedIndex(tempStep.getActionsList().indexOf(action));
 			//		cbStep.setSelectedItem(tempStep);
