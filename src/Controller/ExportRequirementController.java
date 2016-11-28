@@ -8,6 +8,10 @@ public class ExportRequirementController {
 	private String path;
 	private String extension;
 	
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+	
 	public void setRequirement(String requirement) {
 		this.requirement = requirement;
 	}
