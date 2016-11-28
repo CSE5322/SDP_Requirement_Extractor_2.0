@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,6 +35,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -109,13 +111,15 @@ public class RETGUI extends JFrame {
 		textArea = new JTextArea();
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		textArea.setBounds(10, 27, 704, 300);
 		textArea.setFont(new Font("Calibri", Font.ITALIC, 20));
 		textArea.setSelectedTextColor(Color.red);
-		treePane.add(textArea);
+		
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(10, 27, 704, 300);
+		
+		treePane.add(scrollPane);
 
 		highlighter = textArea.getHighlighter();
-		AutoHighlightPhraseController.initializeAutoHighlighter();
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(textArea, popupMenu);

@@ -17,15 +17,12 @@ public class AutoHighlightPhraseController {
 	//Variables for Stanfor NLP
 	private static String modelFile;
 	private static MaxentTagger tagger;	
-	
-	public static void initializeAutoHighlighter()
+		
+	public static void autoHighlight(String text, Highlighter highlighter)
 	{
 		modelFile = "model/english-bidirectional-distsim.tagger";
 		tagger = new MaxentTagger(modelFile);
-	}
-	
-	public static void autoHighlight(String text, Highlighter highlighter)
-	{
+		
 		StringReader stringReader = new StringReader(text);
 
 		List<List<HasWord>> sentences = MaxentTagger.tokenizeText(stringReader);			    
