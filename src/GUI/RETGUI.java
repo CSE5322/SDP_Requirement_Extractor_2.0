@@ -115,6 +115,7 @@ public class RETGUI extends JFrame {
 		treePane.add(textArea);
 
 		highlighter = textArea.getHighlighter();
+		DefineBusinessProcessController.initializeAutoHighlighter();
 
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(textArea, popupMenu);
@@ -371,6 +372,18 @@ public class RETGUI extends JFrame {
 		});
 		removeButton.setBounds(726, 113, 204, 29);
 		treePane.add(removeButton);
+		
+		
+		JButton autoHighlightButton = new JButton("Auto-highlight");
+		autoHighlightButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefineBusinessProcessController.autoHighlight(textArea.getText(), highlighter);
+				
+			}
+		});
+		autoHighlightButton.setBounds(726, 195, 204, 29);
+		treePane.add(autoHighlightButton);
 
 
 	}
