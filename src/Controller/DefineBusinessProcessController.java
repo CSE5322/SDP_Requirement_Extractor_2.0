@@ -28,6 +28,7 @@ public class DefineBusinessProcessController {
 	//Variables for Stanfor NLP
 	static String modelFile;
 	static MaxentTagger tagger;	
+	static DefaultTreeModel treeModel;
 	
 	public List<String> getBusinessProcesses(){
 		
@@ -56,6 +57,14 @@ public class DefineBusinessProcessController {
 		
 		return new DefaultTreeModel(opn.getComponent("-1.-1.-1"));
 		
+	}
+	
+	public void setTreeModel(DefaultTreeModel _treeModel){
+		treeModel = _treeModel;
+	}
+	
+	public DefaultTreeModel getCompleteModel(){
+		return treeModel;
 	}
 	
 	public List<String> getSteps(String bpID){
