@@ -164,7 +164,7 @@ public class DefineBusinessProcessController {
     
 	public static void initializeAutoHighlighter()
 	{
-		modelFile = "C:\\Users\\tusha\\Downloads\\stanford-postagger-2015-12-09\\stanford-postagger-2015-12-09\\models\\english-bidirectional-distsim.tagger";
+		modelFile = "model\\english-bidirectional-distsim.tagger";
 		tagger = new MaxentTagger(modelFile);
 	}
 	
