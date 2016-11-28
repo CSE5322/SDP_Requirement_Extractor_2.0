@@ -12,7 +12,7 @@ import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
-public class HighlightPhraseController {
+public class AutoHighlightPhraseController {
 
 	//Variables for Stanfor NLP
 	private static String modelFile;
