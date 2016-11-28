@@ -48,6 +48,8 @@ public class CreateActionDialog extends JDialog {
 		{
 			{
 				{
+					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
+					
 					txtVerb = new JTextField(phrase.get(0));
 					txtVerb.setBounds(171, 44, 86, 22);
 					getContentPane().add(txtVerb);
@@ -61,7 +63,11 @@ public class CreateActionDialog extends JDialog {
 					lblNoun = new JLabel("Noun : ");
 					lblNoun.setBounds(104, 79, 64, 22);
 					getContentPane().add(lblNoun);
-					txtSentance = new JTextField("");
+					
+
+					txtSentance = new JTextField(dbpController.getSentance(phrase.get(0), phrase.get(1)));
+					
+					//txtSentance = new JTextField("");
 					txtSentance.setBounds(171, 114, 216, 22);
 					getContentPane().add(txtSentance);
 
@@ -105,7 +111,7 @@ public class CreateActionDialog extends JDialog {
 					getRootPane().setDefaultButton(createButton);
 
 
-					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
+					
 
 					List<String> businessProcesses=dbpController.getBusinessProcesses();
 

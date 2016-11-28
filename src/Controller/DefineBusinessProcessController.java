@@ -89,6 +89,14 @@ public class DefineBusinessProcessController {
 		
 	}
 	
+	public String getSentance(String verb,String noun)
+	{
+		Phrase p=new Phrase(verb,noun);
+		String sentance = p.getSentence();
+	
+		return sentance;
+	}
+	
 	
 	
 	public List<String> getActions(String step){
@@ -164,7 +172,7 @@ public class DefineBusinessProcessController {
     
 	public static void initializeAutoHighlighter()
 	{
-		modelFile = "model\\english-bidirectional-distsim.tagger";
+		modelFile = "model/english-bidirectional-distsim.tagger";
 		tagger = new MaxentTagger(modelFile);
 	}
 	

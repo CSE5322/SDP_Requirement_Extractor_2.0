@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import BusinessObjects.BusinessProcess;
 import BusinessObjects.Repository;*/
 import Controller.DefineBusinessProcessController;
-import composite.Phrase;
+
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -43,6 +43,8 @@ public class CreateBusinessProcessDialog extends JDialog {
 			{
 				
 				{
+					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
+					
 					txtVerb = new JTextField(phrase.get(0));
 					txtVerb.setBounds(171, 44, 86, 22);
 					getContentPane().add(txtVerb);
@@ -56,7 +58,10 @@ public class CreateBusinessProcessDialog extends JDialog {
 					lblNoun = new JLabel("Noun : ");
 					lblNoun.setBounds(104, 82, 64, 22);
 					getContentPane().add(lblNoun);
-					txtSentance = new JTextField("");
+					
+					txtSentance = new JTextField(dbpController.getSentance(phrase.get(0), phrase.get(1)));
+					
+					//txtSentance = new JTextField("");
 					txtSentance.setBounds(171, 114, 216, 22);
 					getContentPane().add(txtSentance);
 					
@@ -87,7 +92,7 @@ public class CreateBusinessProcessDialog extends JDialog {
 					lblSequenceNumber = new JLabel("Sequence Number : ");
 			
 					
-					DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
+					//DefineBusinessProcessController dbpController= new DefineBusinessProcessController();
 					
 					int numberOfBusinessProcess=dbpController.getBusinessProcesses().size();
 					

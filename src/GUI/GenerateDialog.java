@@ -27,23 +27,24 @@ public class GenerateDialog extends JDialog{
 	private GenerateRequirementController controller;
 	
 	public GenerateDialog(){
-		setBounds(100, 100, 600, 900);
+		setTitle("Generated Requirements ");
+		setBounds(100, 100, 654, 730);
 		
 		controller = new GenerateRequirementController();
 		String requirement = controller.generateRequirement();
-		
-		BoxLayout layout=new BoxLayout(contentPanel, BoxLayout.Y_AXIS); 
-		contentPanel.setLayout(layout);
+        contentPanel.setLayout(null);
 
         JTextArea text = new JTextArea();
         text.setBounds(0, 0, 500, 500);
         text.setText(requirement);
         
         JScrollPane scrollPane = new JScrollPane(text);
+        scrollPane.setBounds(0, 0, 654, 679);
     	scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);	
 		contentPanel.add(scrollPane);
 		
 		 JButton export = new JButton("Export");
+		 export.setBounds(280, 679, 85, 29);
 	        export.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent arg0) {
 	        		JFileChooser fc = new JFileChooser();
