@@ -13,6 +13,7 @@ public class ExportDoc extends ExportRequirement {
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run = paragraph.createRun();
 		
+		requirementData.replace("\n", "<w:br/>");
 		run.setText(requirementData);
 		
 		FileOutputStream output;
