@@ -386,7 +386,29 @@ public class RETGUI extends JFrame {
 		autoHighlightButton.setBounds(726, 195, 204, 29);
 		treePane.add(autoHighlightButton);
 
-
+		JButton undoButton = new JButton("Undo");
+		
+		undoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OperationMgr.getInstance().undo();
+				refreshTree();
+			}
+		});
+		
+		undoButton.setBounds(726, 250, 204, 29);
+		treePane.add(undoButton);
+		
+		
+		JButton redoButton = new JButton("Redo");
+		
+		redoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OperationMgr.getInstance().redo();
+				refreshTree();
+			}
+		});
+		redoButton.setBounds(726, 290, 204, 29);
+		treePane.add(redoButton);
 	}
 
 	public void refreshTree() {
@@ -471,27 +493,37 @@ public class RETGUI extends JFrame {
 		return phrase;
 	}
 	public String getIdofNode(Object ob){
-
-		  String id = "";
-		  DefaultMutableTreeNode child = (DefaultMutableTreeNode)ob;
-		  DefaultMutableTreeNode parent = (DefaultMutableTreeNode) child.getParent();
-		  
-		  while(parent!=null){
-		   id = "." + parent.getIndex(child) + id;
-		   
-		   child = parent;
-		   parent = (DefaultMutableTreeNode) child.getParent();
-		  }
-		  
-		  id.replaceFirst(".", "");
-		  System.out.println("Selected ID");
-		  return id;
-		  
-		 }
-
-	
-	public void createNodes() {
+		String id = "";
 		
+		int[] num = new int[3];
+		num[0] = -1;
+		num[1] = -1;
+		num[2] = -1;
 		
+		DefaultMutableTreeNode child = (DefaultMutableTreeNode)ob;
+		DefaultMutableTreeNode parent = (DefaultMutableTreeNode) child.getParent();
+		 
+	    for(int i = 0; parent!=null; i++){
+		num[i] = parent.getIndex(child);
+		
+		child = parent;
+		parent = (DefaultMutableTreeNode) child.getParent();
+		}
+
+	    //Action
+	    if(num[0] !=-1 && num[1] !=-1 && num[2]!=-1){
+	    	id = num[2] + "." + num[1] + "." + num[0];
+	    }
+	    //Step
+	    else if(num[0] != -1 && num[1] != -1){
+			id = num[1] + "." + num[0] + "." + "-1";
+		}
+	    //Business Process
+	    else{
+			id = num[0] + "." + "-1" + "." + "-1";
+		}
+
+	    return id;
+		  
 	}
 }
