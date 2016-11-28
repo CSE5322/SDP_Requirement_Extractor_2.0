@@ -15,10 +15,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import Controller.ExportRequirementController;
 import Controller.GenerateRequirementController;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 public class GenerateDialog extends JDialog{
 	private final JPanel contentPanel = new JPanel();
