@@ -122,7 +122,7 @@ public class OpeartionImpl implements OpeartionInterface{
 		String requirement = "";
 		String tab = "      ";
 		requirement=root.generate("R");
-		System.out.println(requirement);
+		//System.out.println(requirement);
 
 		return requirement;
 	}

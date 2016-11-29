@@ -10,6 +10,9 @@ import java.io.IOException;
 public class ImportFile { 
 
 public String FetchInputData(String FileName){
+	if(FileName == null || FileName.equals(""))
+		return "";
+	
 	 File file = new File(FileName);
 	    FileInputStream fis = null;
 	    BufferedInputStream bis = null;
