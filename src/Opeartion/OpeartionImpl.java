@@ -129,8 +129,8 @@ public class OpeartionImpl implements OpeartionInterface{
 
 	@Override
 	public boolean exportRequirement(String requirement, String path, String extension) {
-		ExportRequirement exp = new ExportRequirement();
-		exp.ExportData(requirement, path, extension);
+		ExportRequirement exp = new ExportRequirement( requirement,  path,  extension);
+		exp.exportData();
 		return false;
 	}
     

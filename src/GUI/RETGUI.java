@@ -100,6 +100,7 @@ public class RETGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public RETGUI() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 970, 715);
 
@@ -396,7 +397,7 @@ public class RETGUI extends JFrame {
 			}
 		});
 		
-		undoButton.setBounds(726, 250, 204, 29);
+		undoButton.setBounds(726, 236, 204, 29);
 		treePane.add(undoButton);
 		
 		
@@ -408,7 +409,7 @@ public class RETGUI extends JFrame {
 				refreshTree();
 			}
 		});
-		redoButton.setBounds(726, 290, 204, 29);
+		redoButton.setBounds(726, 277, 204, 29);
 		treePane.add(redoButton);
 	}
 
