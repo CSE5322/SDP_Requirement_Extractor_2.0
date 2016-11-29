@@ -20,7 +20,7 @@ public class AutoHighlightPhraseController {
 		
 	public static void autoHighlight(String text, Highlighter highlighter)
 	{
-		modelFile = "model/english-bidirectional-distsim.tagger";
+		modelFile = "english-bidirectional-distsim.tagger";
 		tagger = new MaxentTagger(modelFile);
 		
 		StringReader stringReader = new StringReader(text);
